@@ -16,21 +16,11 @@ import workScene from './scenes/work'
 // camera
 import StaticCameraBehaviour from './objects/cameras/StaticCamera'
 
-// HIGHWAY FOR TRANSTIONS
-import Highway from '@dogstudio/highway'
-import Fade from './transitions/fade.js'
-
-// Call Highway.Core once.
-const H = new Highway.Core({
-    transitions: {
-        default: Fade,
-    },
-})
+// barba for transitions
+import barba from '@barba/core'
+import FadeTransition from './transitions/fade.js'
 
 window.DEBUG = window.location.search.includes('debug')
-
-// grab our canvas
-const canvas = document.querySelector('#webgl-canvas')
 
 // hide canvas
 webgl.canvas.style.visibility = 'hidden'
@@ -39,6 +29,47 @@ webgl.canvas.style.visibility = 'hidden'
 assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
+
+    var fadeTransition = new FadeTransition()
+
+    barba.init({
+        transitions: [
+            {
+                name: 'default-transition',
+                async leave(data) {
+                    fadeTransition.leave(data)
+                },
+                async enter() {
+                    console.log(webgl)
+                    //fadeTransition.enter()
+                },
+            },
+        ],
+        views: [
+            {
+                namespace: 'home',
+                async afterEnter(data) {
+                    landingScene.postprocessing()
+                },
+            },
+
+            {
+                namespace: 'about',
+                async afterEnter(data) {
+                    aboutScene.postprocessing()
+                },
+            },
+
+            {
+                namespace: 'work',
+                async afterEnter(data) {
+                    workScene.postprocessing()
+                },
+            },
+        ],
+    })
+
+    console.log(fadeTransition)
 
     // set active scene and postprocessing
     // params include everything not in three.js

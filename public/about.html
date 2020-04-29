@@ -5,14 +5,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <title>About</title>
+        <title>Home</title>
         <link
             rel="stylesheet"
             href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css"
         />
         <link rel="stylesheet" href="css/style.css" />
     </head>
-    <body>
+    <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
 
         <ul class="nav">
@@ -21,10 +21,8 @@
             <li><a data-scene="workScene" href="work.html">work</a></li>
         </ul>
 
-        <main data-router-wrapper>
-            <article data-router-view="index">
-                <h1>about</h1>
-            </article>
+        <main data-barba="container" data-barba-namespace="about">
+            <h1>about</h1>
         </main>
     </body>
 </html>

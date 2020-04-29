@@ -33,7 +33,7 @@
     ]
   },
   "dependencies": {
-    "@dogstudio/highway": "^2.2.1",
+    "@barba/core": "^2.9.7",
     "cannon": "^0.6.2",
     "canvas-sketch-util": "^1.10.0",
     "charming": "^3.0.2",

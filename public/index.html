@@ -11,20 +11,40 @@
             href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css"
         />
         <link rel="stylesheet" href="css/style.css" />
+
+        <!-- vue.js -->
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     </head>
-    <body>
+    <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
 
-        <ul class="nav">
-            <li><a data-scene="landingScene" href="index.html">home</a></li>
-            <li><a data-scene="aboutScene" href="about.html">about</a></li>
-            <li><a data-scene="workScene" href="work.html">work</a></li>
-        </ul>
+        <div class="home-navigation">
+            <div class="home-navigation-wrapper">
+                <div class="left-navigation">
+                    <a class="left-navigation-text" data-scene="workScene" href="work.html">work</a>
+                </div>
 
-        <main data-router-wrapper>
-            <article data-router-view="index">
-                <h1>home</h1>
-            </article>
+                <div class="right-navigation">
+                    <a class="right-navigation-text" data-scene="aboutScene" href="about.html"
+                        >about</a
+                    >
+                </div>
+            </div>
+        </div>
+
+        <div id="app">{{message}}</div>
+
+        <script>
+            const App = new Vue({
+                el: '#app',
+                data: {
+                    message: 'Hello Vue!',
+                },
+            })
+        </script>
+
+        <main data-barba="container" data-barba-namespace="home">
+            <h1>home</h1>
         </main>
     </body>
 </html>

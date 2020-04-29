@@ -6,6 +6,7 @@ Singleton:
     is created on first import
     can be referenced in other modules via import
 */
+
 import * as THREE from 'three'
 import webgl from '../lib/webgl'
 
@@ -18,24 +19,22 @@ import { addWorkLighting } from '../objects/lighting/WorkLighting'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { addBloomPass } from '../objects/post/BloomPass'
+import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 class WorkScene {
-    constructor(webgl) {
-        this.webgl = webgl
-
+    constructor() {
         this.sceneKey = 'workScene'
 
         // create a new scene
-        this.webgl.scenes[this.sceneKey] = new THREE.Scene()
+        webgl.scenes[this.sceneKey] = new THREE.Scene()
 
         // quicker to type
-        this.scene = this.webgl.scenes[this.sceneKey]
+        this.scene = webgl.scenes[this.sceneKey]
 
         this.initScene()
 
-        this.webgl.scenesParams[this.sceneKey] = this
-
-        this.initScene()
+        webgl.scenesParams[this.sceneKey] = this
     }
 
     initScene() {
@@ -43,14 +42,14 @@ class WorkScene {
         addWorkLighting(this.scene)
 
         // objects
-        this.workWolf = new Wolf(this.webgl, {
+        this.workWolf = new Wolf(webgl, {
             scene: 'work',
             skyIndex: '8',
         })
 
         this.scene.add(this.workWolf)
 
-        this.workSkybox = new Skybox(this.webgl, {
+        this.workSkybox = new Skybox(webgl, {
             scene: 'work',
             skyIndex: '12',
             noSun: false,
@@ -59,14 +58,14 @@ class WorkScene {
     }
 
     setCamera() {
-        if (this.webgl.orbitControls) {
-            this.webgl.orbitControls.position = [
+        if (webgl.orbitControls) {
+            webgl.orbitControls.position = [
                 -0.2078281158005838,
                 0.017467252995429144,
                 -0.28874058085994647,
             ]
-            this.webgl.orbitControls.distance = 0.5
-            this.webgl.orbitControls.target = [0.2, 0, 0]
+            webgl.orbitControls.distance = 0.5
+            webgl.orbitControls.target = [0.2, 0, 0]
         } else {
             this.cameraPosition = {
                 x: -0.2,
@@ -84,8 +83,20 @@ class WorkScene {
 
     postprocessing() {
         // postprocessing
-        this.webgl.composer = new EffectComposer(this.webgl.renderer)
+        webgl.composer = new EffectComposer(webgl.renderer)
+
+        //var renderPass = new RenderPass(this.scene, webgl.camera)
+        //webgl.composer.addPass(renderPass)
+
+        addBloomPass(webgl, this.scene, {
+            resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
+            strength: 0.2,
+            radius: 1.0,
+            threshold: 0.7,
+        })
+
+        addGrainPassLite(webgl, {})
     }
 }
 
-export default new WorkScene(webgl)
+export default new WorkScene()

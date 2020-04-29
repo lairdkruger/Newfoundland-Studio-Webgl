@@ -22,20 +22,18 @@ import Skybox from '../objects/Skybox'
 import { addTopLighting } from '../objects/lighting/TopLighting'
 
 class AboutScene {
-    constructor(webgl) {
-        this.webgl = webgl
-
+    constructor() {
         this.sceneKey = 'aboutScene'
 
         // create a new scene
-        this.webgl.scenes[this.sceneKey] = new THREE.Scene()
+        webgl.scenes[this.sceneKey] = new THREE.Scene()
 
         // quicker to type
-        this.scene = this.webgl.scenes[this.sceneKey]
+        this.scene = webgl.scenes[this.sceneKey]
 
         this.initScene()
 
-        this.webgl.scenesParams[this.sceneKey] = this
+        webgl.scenesParams[this.sceneKey] = this
     }
 
     initScene() {
@@ -43,14 +41,14 @@ class AboutScene {
         addTopLighting(this.scene)
 
         // objects
-        this.aboutWolf = new Wolf(this.webgl, {
+        this.aboutWolf = new Wolf(webgl, {
             scene: 'about',
             skyIndex: '10',
         })
 
         this.scene.add(this.aboutWolf)
 
-        this.aboutSkybox = new Skybox(this.webgl, {
+        this.aboutSkybox = new Skybox(webgl, {
             scene: 'about',
             skyIndex: '10',
             noSun: false,
@@ -60,14 +58,14 @@ class AboutScene {
     }
 
     setCamera() {
-        if (this.webgl.orbitControls) {
-            this.webgl.orbitControls.position = [
+        if (webgl.orbitControls) {
+            webgl.orbitControls.position = [
                 0.37272409090935477,
                 -0.032702695716682634,
                 0.4033570652813696,
             ]
-            this.webgl.orbitControls.distance = 0.5
-            this.webgl.orbitControls.target = [0.2, 0, 0]
+            webgl.orbitControls.distance = 0.5
+            webgl.orbitControls.target = [0.2, 0, 0]
         } else {
             this.cameraPosition = {
                 x: 0.4,
@@ -85,9 +83,9 @@ class AboutScene {
 
     postprocessing() {
         // postprocessing
-        this.webgl.composer = new EffectComposer(this.webgl.renderer)
+        webgl.composer = new EffectComposer(webgl.renderer)
 
-        addBloomPass(this.webgl, this.scene, {
+        addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
             strength: 2.0,
             radius: 1.0,
@@ -96,4 +94,4 @@ class AboutScene {
     }
 }
 
-export default new AboutScene(webgl)
+export default new AboutScene()
