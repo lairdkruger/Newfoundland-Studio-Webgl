@@ -33,13 +33,14 @@
     ]
   },
   "dependencies": {
+    "@dogstudio/highway": "^2.2.1",
     "cannon": "^0.6.2",
     "canvas-sketch-util": "^1.10.0",
+    "charming": "^3.0.2",
     "controls-gui": "^2.0.0",
     "controls-state": "^2.0.0",
     "datauritoblob": "^1.0.0",
     "detect-gpu": "^1.2.0",
-    "glsl-vignette": "^1.1.0",
     "gsap": "^3.2.6",
     "highest-power-two": "^1.0.2",
     "image-promise": "^7.0.0",

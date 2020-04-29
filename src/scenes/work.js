@@ -1,8 +1,13 @@
 /*
 Work Scene
 Handles set up and behaviour
+
+Singleton: 
+    is created on first import
+    can be referenced in other modules via import
 */
 import * as THREE from 'three'
+import webgl from '../lib/webgl'
 
 // objects
 import Wolf from '../objects/Wolf'
@@ -14,7 +19,7 @@ import { addWorkLighting } from '../objects/lighting/WorkLighting'
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 
-export default class WorkScene {
+class WorkScene {
     constructor(webgl) {
         this.webgl = webgl
 
@@ -82,3 +87,5 @@ export default class WorkScene {
         this.webgl.composer = new EffectComposer(this.webgl.renderer)
     }
 }
+
+export default new WorkScene(webgl)

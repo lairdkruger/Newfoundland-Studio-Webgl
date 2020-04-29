@@ -1154,6 +1154,13 @@
   dependencies:
     commander "^2.15.1"
 
+"@dogstudio/highway@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@dogstudio/highway/-/highway-2.2.1.tgz#bf33cb3a026e9362e18468043574363204c16fa8"
+  integrity sha512-/03I5fib34y22VGjYFy2y1U0LHPlodH/Ua+YHil6CRf1tcD8uCIHvSH2s2B9rc2I9hjEPTC9I3VfYBIYKiXLAg==
+  dependencies:
+    tiny-emitter "^2.1.0"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"
@@ -2129,6 +2136,11 @@ chardet@^0.7.0:
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/chardet/-/chardet-0.7.0.tgz#90094849f0937f2eedc2425d0d28a9e5f0cbad9e"
   integrity sha512-mT8iDcrh03qDGRRmoA2hmBJnxpllMR+0/0qlzjqZES6NdiWDcZkCNAk4rPFZ9Q85r27unkiNNg8ZOiwZXBHwcA==
+
+charming@^3.0.2:
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/charming/-/charming-3.0.2.tgz#2a08db0bbea153e457bc0e7475e1b4e3a0d8d4cb"
+  integrity sha512-T0n8yF4m9m0du07ydm52jh8JbNbhW0D9ugNwBg+naJ/myv4T6wdo9TN5X5YEAoKAZbZuAaZomKnuIUCyoq3rlw==
 
 chokidar@^2.0.2:
   version "2.1.6"
@@ -3753,11 +3765,6 @@ glsl-tokenizer@^2.0.0, glsl-tokenizer@^2.0.2:
   integrity sha512-XSZEJ/i4dmz3Pmbnpsy3cKh7cotvFlBiZnDOwnj/05EwNp2XrhQ4XKJxT7/pDt4kp4YcpRSKz8eTV7S+mwV6MA==
   dependencies:
     through2 "^0.6.3"
-
-glsl-vignette@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/glsl-vignette/-/glsl-vignette-1.1.0.tgz#14ad424b3990c4bf1feb372408a0f1ea5665989e"
-  integrity sha512-WF5iR+z6R89w/svt9OdxWCXbTUFCFUB6q4ei83E9WAERjb8UGKyH8jDU4riuaP9w9pQvadAfMmwiSDpWZm6j+g==
 
 glslify-bundle@^5.0.0:
   version "5.1.1"
@@ -6798,6 +6805,11 @@ timers-browserify@^2.0.4:
   integrity sha512-YvC1SV1XdOUaL6gx5CoGroT3Gu49pK9+TZ38ErPldOWW4j49GI1HKs9DV+KGq/w6y+LZ72W1c8cKz2vzY+qpzg==
   dependencies:
     setimmediate "^1.0.4"
+
+tiny-emitter@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/tiny-emitter/-/tiny-emitter-2.1.0.tgz#1d1a56edfc51c43e863cbb5382a72330e3555423"
+  integrity sha512-NB6Dk1A9xgQPMoGqC5CVXn123gWyte215ONT5Pp5a0yt4nlEoO1ZWeCwpncaekPHXO60i47ihFnZPiRPjRMq4Q==
 
 tmp@^0.0.33:
   version "0.0.33"

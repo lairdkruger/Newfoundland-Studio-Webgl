@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <title>Wolf</title>
+        <title>Home</title>
         <link
             rel="stylesheet"
             href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css"
@@ -14,5 +14,17 @@
     </head>
     <body>
         <canvas id="webgl-canvas"></canvas>
+
+        <ul class="nav">
+            <li><a data-scene="landingScene" href="index.html">home</a></li>
+            <li><a data-scene="aboutScene" href="about.html">about</a></li>
+            <li><a data-scene="workScene" href="work.html">work</a></li>
+        </ul>
+
+        <main data-router-wrapper>
+            <article data-router-view="index">
+                <h1>home</h1>
+            </article>
+        </main>
     </body>
 </html>

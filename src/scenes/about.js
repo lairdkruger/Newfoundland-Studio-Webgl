@@ -1,9 +1,14 @@
 /*
 About Scene
 Handles set up and behaviour
+
+Singleton: 
+    is created on first import
+    can be referenced in other modules via import
 */
 
 import * as THREE from 'three'
+import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
@@ -16,7 +21,7 @@ import Skybox from '../objects/Skybox'
 // lighting etc
 import { addTopLighting } from '../objects/lighting/TopLighting'
 
-export default class AboutScene {
+class AboutScene {
     constructor(webgl) {
         this.webgl = webgl
 
@@ -90,3 +95,5 @@ export default class AboutScene {
         })
     }
 }
+
+export default new AboutScene(webgl)

@@ -64,10 +64,10 @@ export default class WebGLApp {
         this.scenesParams = {}
 
         // init a default scene
-        this.scenes.defaultScene = new THREE.Scene()
+        this.scenes['defaultScene'] = new THREE.Scene()
 
         // set renderer to render default scene
-        this.currentScene = this.scenes.defaultScene
+        this.currentScene = this.scenes['defaultScene']
 
         // used for updating composer
         this.oldScene = this.currentScene
@@ -247,7 +247,7 @@ export default class WebGLApp {
     onMouseMove(event) {
         // get normalized mouse position on viewport
 
-        var target = event.target
+        var target = document.getElementById('webgl-canvas')
 
         var rect = target.getBoundingClientRect()
 
