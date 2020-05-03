@@ -1,55 +1,26 @@
 /*
-Handles All Webgl Content
+Handles all site behaviour
 */
 
-import WebGLApp from './lib/WebGLApp'
 import { addScreenshotButton } from './lib/SaveScreenshot'
 import assets from './lib/AssetManager'
 
-// scenes
-import LandingScene from './scenes/landing'
-import AboutScene from './scenes/about'
-import WorkScene from './scenes/work'
+// create a singleton instance of webgl (called 'webgl')
+import webgl from './lib/webgl'
+
+// create singleton scenes
+import landingScene from './scenes/landing'
+import aboutScene from './scenes/about'
+import workScene from './scenes/work'
 
 // camera
 import StaticCameraBehaviour from './objects/cameras/StaticCamera'
 
-// transitions
-import { sceneTransition } from './objects/cameras/SceneTransition'
+// barba for transitions
+import barba from '@barba/core'
+import FadeTransition from './transitions/fade.js'
 
 window.DEBUG = window.location.search.includes('debug')
-
-// grab our canvas
-const canvas = document.querySelector('#webgl-canvas')
-// webgl
-var webgl
-// attach it to the window to inspect in the console
-if (window.DEBUG) {
-    // debug is active when '?debug' is at the end of the URL
-    // setup the WebGLRenderer for debug mode
-    webgl = new WebGLApp({
-        canvas,
-        alpha: true,
-        background: '#000',
-        backgroundAlpha: 1,
-        postprocessing: true,
-        orbitControls: true,
-    })
-    window.webgl = webgl
-
-    // add screenshot button to debug page
-    addScreenshotButton(webgl)
-} else {
-    // settings for standard scene
-    webgl = new WebGLApp({
-        canvas,
-        alpha: true,
-        background: '#000',
-        backgroundAlpha: 1,
-        postprocessing: true,
-        orbitControls: false,
-    })
-}
 
 // hide canvas
 webgl.canvas.style.visibility = 'hidden'
@@ -59,45 +30,65 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
 
-    // init scenes
-    const aboutScene = new AboutScene(webgl)
-    const landingScene = new LandingScene(webgl)
-    const workScene = new WorkScene(webgl)
+    function delay(n) {
+        n = n || 2000
+        return new Promise((done) => {
+            setTimeout(() => {
+                done()
+            }, n)
+        })
+    }
+
+    var fadeTransition = new FadeTransition()
+
+    barba.init({
+        debug: true,
+        transitions: [
+            // setting transitions between pages
+            {
+                name: 'default-transition',
+                async leave(data) {
+                    const done = this.async()
+                    fadeTransition.leave(data)
+                    await delay(2000)
+                    done()
+                },
+
+                enter: (data) => fadeTransition.enter(data),
+            },
+        ],
+        views: [
+            // for updating settings specific to each page
+            {
+                namespace: 'home',
+                async afterEnter(data) {
+                    landingScene.postprocessing()
+                },
+            },
+
+            {
+                namespace: 'about',
+                async afterEnter(data) {
+                    aboutScene.postprocessing()
+                },
+            },
+
+            {
+                namespace: 'work',
+                async afterEnter(data) {
+                    workScene.postprocessing()
+                },
+            },
+        ],
+    })
 
     // set active scene and postprocessing
-    // params include everything not in three.js
+    // currentSceneParams include everything not in three.js
     webgl.currentScene = webgl.scenes['landingScene']
     webgl.currentSceneParams = webgl.scenesParams['landingScene']
     landingScene.postprocessing()
 
     var staticCameraBehaviour = new StaticCameraBehaviour(webgl)
-
-    setTimeout(function () {
-        sceneTransition(webgl, 'landingScene', 'workScene', function () {
-            webgl.currentScene = webgl.scenes['workScene']
-            webgl.currentSceneParams = webgl.scenesParams['workScene']
-            webgl.camera.inTransition = false
-            workScene.postprocessing()
-        })
-    }, 8000)
-
-    setTimeout(function () {
-        sceneTransition(webgl, 'workScene', 'aboutScene', function () {
-            webgl.currentScene = webgl.scenes['aboutScene']
-            webgl.currentSceneParams = webgl.scenesParams['aboutScene']
-            webgl.camera.inTransition = false
-            aboutScene.postprocessing()
-        })
-    }, 16000)
-
-    setTimeout(function () {
-        sceneTransition(webgl, 'aboutScene', 'landingScene', function () {
-            webgl.currentScene = webgl.scenes['landingScene']
-            webgl.currentSceneParams = webgl.scenesParams['landingScene']
-            webgl.camera.inTransition = false
-            landingScene.postprocessing()
-        })
-    }, 24000)
 
     console.log(webgl)
 

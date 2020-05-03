@@ -1,9 +1,16 @@
 /*
 Landing Scene
 Handles set up and behaviour
+
+Singleton: 
+    is created on first import
+    can be referenced in other modules via import
 */
 
 import * as THREE from 'three'
+
+// global webgl singleton
+import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
@@ -18,21 +25,19 @@ import Skybox from '../objects/Skybox'
 // lighting
 import { addBackLighting } from '../objects/lighting/BackLighting'
 
-export default class LandingScene {
-    constructor(webgl) {
-        this.webgl = webgl
-
+class LandingScene {
+    constructor() {
         this.sceneKey = 'landingScene'
 
         // create a new scene
-        this.webgl.scenes[this.sceneKey] = new THREE.Scene()
+        webgl.scenes[this.sceneKey] = new THREE.Scene()
 
         // quicker to type
-        this.scene = this.webgl.scenes[this.sceneKey]
+        this.scene = webgl.scenes[this.sceneKey]
 
         this.initScene()
 
-        this.webgl.scenesParams[this.sceneKey] = this
+        webgl.scenesParams[this.sceneKey] = this
     }
 
     initScene() {
@@ -40,7 +45,7 @@ export default class LandingScene {
         addBackLighting(this.scene)
 
         // objects
-        this.landingWolf = new Wolf(this.webgl, {
+        this.landingWolf = new Wolf(webgl, {
             scene: 'landing',
             skyIndex: '3',
             noSun: true,
@@ -48,7 +53,7 @@ export default class LandingScene {
 
         this.scene.add(this.landingWolf)
 
-        this.landingSkybox = new Skybox(this.webgl, {
+        this.landingSkybox = new Skybox(webgl, {
             scene: 'landing',
             skyIndex: '3',
         })
@@ -57,14 +62,14 @@ export default class LandingScene {
     }
 
     setCamera() {
-        if (this.webgl.orbitControls) {
-            this.webgl.orbitControls.position = [
+        if (webgl.orbitControls) {
+            webgl.orbitControls.position = [
                 1.1770132413546304,
                 0.657532091665101,
                 0.04683957130027806,
             ]
-            this.webgl.orbitControls.distance = 1.240000000000002
-            this.webgl.orbitControls.target = [0, -0.2, 0]
+            webgl.orbitControls.distance = 1.240000000000002
+            webgl.orbitControls.target = [0, -0.2, 0]
         } else {
             this.cameraPosition = {
                 x: 1.1,
@@ -74,7 +79,7 @@ export default class LandingScene {
 
             this.cameraTarget = {
                 x: 0.0,
-                y: 0.1,
+                y: 0.0,
                 z: 0.0,
             }
         }
@@ -82,19 +87,16 @@ export default class LandingScene {
 
     postprocessing() {
         // postprocessing
-        this.webgl.composer = new EffectComposer(this.webgl.renderer)
-        addBloomPass(this.webgl, this.scene, {
+        webgl.composer = new EffectComposer(webgl.renderer)
+        addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
             strength: 0.8,
             radius: 0.5,
             threshold: 0.7,
         })
 
-        addRGBPass(this.webgl, {
-            amount: 0.002,
-            angle: 0.0,
-        })
-
-        addGrainPassLite(this.webgl, {})
+        addGrainPassLite(webgl, {})
     }
 }
+
+export default new LandingScene()
