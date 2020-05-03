@@ -163,8 +163,6 @@ export default class Wolf extends THREE.Group {
                 'assets/textures/standard/colourBars_square.jpg',
             ])
 
-            //var texture = new THREE.TextureLoader().load('assets/textures/standard/colourBars.png')
-
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
             material = new THREE.MeshBasicMaterial({
@@ -178,6 +176,7 @@ export default class Wolf extends THREE.Group {
         function workMaterial(_this) {
             material = new THREE.MeshNormalMaterial({
                 skinning: true,
+                wireframe: true,
             })
 
             const customShader = [
@@ -279,17 +278,6 @@ export default class Wolf extends THREE.Group {
         function aboutMaterial(_this) {
             const loader = new THREE.CubeTextureLoader()
 
-            const skyBoxIndex = 13
-
-            // var reflectionCube = loader.load([
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
-            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
-            // ])
-
             var reflectionCube = loader.load([
                 'assets/textures/standard/static.jpg',
                 'assets/textures/standard/static.jpg',
@@ -308,8 +296,36 @@ export default class Wolf extends THREE.Group {
         }
 
         function workMaterial(_this) {
-            material = new THREE.MeshLambertMaterial({
+            const loader = new THREE.CubeTextureLoader()
+
+            const skyBoxIndex = _this.options.skyIndex
+
+            if (_this.options.noSun) {
+                var reflectionCube = loader.load([
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left_no_sun.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
+                ])
+            } else {
+                var reflectionCube = loader.load([
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
+                    'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
+                ])
+            }
+
+            reflectionCube.mapping = THREE.CubeReflectionMapping
+
+            material = new THREE.MeshBasicMaterial({
                 color: 0x000000,
+                envMap: reflectionCube,
+                reflectivity: 0.66,
             })
         }
 
@@ -343,9 +359,6 @@ export default class Wolf extends THREE.Group {
 
     update(dt, time) {
         this.updateUniforms(dt)
-
-        // console.log(this.webgl.orbitControls.position)
-        // console.log(this.webgl.orbitControls.distance)
 
         // update animation
         if (this.mixer) this.mixer.update(dt)

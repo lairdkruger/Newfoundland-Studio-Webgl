@@ -13,6 +13,7 @@ import webgl from '../lib/webgl'
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { addTVPass } from '../objects/post/TVPass'
+import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 import { addBloomPass } from '../objects/post/BloomPass'
 
@@ -89,16 +90,18 @@ class AboutScene {
         addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
             strength: 0.0,
-            radius: 1.0,
-            threshold: 0.99,
+            radius: 0.5,
+            threshold: 0.7,
         })
 
         addTVPass(webgl, {
-            distortion: 0.5,
-            distortion2: 0.5,
+            distortion: 0.8,
+            distortion2: 1.0,
             speed: 0.5,
             rollSpeed: 0.0,
         })
+
+        addGrainPassLite(webgl, {})
     }
 }
 

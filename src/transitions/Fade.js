@@ -60,7 +60,6 @@ export default class FadeTransition {
                     },
                 })
                 var spans = [...el.querySelectorAll('span')]
-                console.log(spans)
 
                 new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.04)
             }
@@ -129,7 +128,6 @@ export default class FadeTransition {
                     },
                 })
                 var spans = [...el.querySelectorAll('span')]
-                console.log(spans)
 
                 new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
             }

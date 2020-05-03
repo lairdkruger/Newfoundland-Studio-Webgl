@@ -44,7 +44,8 @@ class WorkScene {
         // objects
         this.workWolf = new Wolf(webgl, {
             scene: 'work',
-            skyIndex: '8',
+            skyIndex: '12',
+            noSun: false,
         })
 
         this.scene.add(this.workWolf)
@@ -87,13 +88,6 @@ class WorkScene {
 
         //var renderPass = new RenderPass(this.scene, webgl.camera)
         //webgl.composer.addPass(renderPass)
-
-        addBloomPass(webgl, this.scene, {
-            resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 0.2,
-            radius: 1.0,
-            threshold: 0.7,
-        })
 
         addGrainPassLite(webgl, {})
     }
