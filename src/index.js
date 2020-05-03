@@ -30,22 +30,35 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
 
+    function delay(n) {
+        n = n || 2000
+        return new Promise((done) => {
+            setTimeout(() => {
+                done()
+            }, n)
+        })
+    }
+
     var fadeTransition = new FadeTransition()
 
     barba.init({
+        debug: true,
         transitions: [
+            // setting transitions between pages
             {
                 name: 'default-transition',
                 async leave(data) {
+                    const done = this.async()
                     fadeTransition.leave(data)
+                    await delay(2000)
+                    done()
                 },
-                async enter() {
-                    console.log(webgl)
-                    //fadeTransition.enter()
-                },
+
+                enter: (data) => fadeTransition.enter(data),
             },
         ],
         views: [
+            // for updating settings specific to each page
             {
                 namespace: 'home',
                 async afterEnter(data) {
@@ -69,10 +82,8 @@ assets.load({ renderer: webgl.renderer }).then(() => {
         ],
     })
 
-    console.log(fadeTransition)
-
     // set active scene and postprocessing
-    // params include everything not in three.js
+    // currentSceneParams include everything not in three.js
     webgl.currentScene = webgl.scenes['landingScene']
     webgl.currentSceneParams = webgl.scenesParams['landingScene']
     landingScene.postprocessing()

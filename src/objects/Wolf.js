@@ -2,7 +2,7 @@ import * as THREE from 'three'
 import assets from '../lib/AssetManager'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-// preload the suzanne model
+// preload the models
 const wolfKey = assets.queue({
     url: 'assets/obj/wolf.glb',
     type: 'gltf',
@@ -152,52 +152,27 @@ export default class Wolf extends THREE.Group {
         }
 
         function aboutMaterial(_this) {
+            const loader = new THREE.CubeTextureLoader()
+
+            var reflectionCube = loader.load([
+                'assets/textures/standard/colourBars_square.jpg',
+                'assets/textures/standard/colourBars_square.jpg',
+                'assets/textures/standard/colourBars_square.jpg',
+                'assets/textures/standard/colourBars_square.jpg',
+                'assets/textures/standard/colourBars_square.jpg',
+                'assets/textures/standard/colourBars_square.jpg',
+            ])
+
+            //var texture = new THREE.TextureLoader().load('assets/textures/standard/colourBars.png')
+
+            reflectionCube.mapping = THREE.CubeReflectionMapping
+
             material = new THREE.MeshBasicMaterial({
-                color: 0xffffff,
+                //map: texture,
+                envMap: reflectionCube,
+                reflectivity: 1.0,
                 skinning: true,
-                wireframe: true,
             })
-
-            const customShader = [
-                {
-                    from: '#include <common>',
-                    to: `
-                #include <common>
-                /* custom uniforms go here */
-
-                uniform float uTime;
-              `,
-                },
-                {
-                    from: '#include <color_fragment>',
-                    to: `
-                #include <color_fragment>
-                /* set diffuseColor.rgb here */
-
-                {
-                /*
-                  float fluctuate = (sin(uTime) + 1.0) / 2.0;
-                  diffuseColor.rgb = vec3(0.0, 0.0, 0.0);
-                */
-                }
-              `,
-                },
-            ]
-
-            material.onBeforeCompile = function (shader) {
-                customShader.forEach((rep) => {
-                    shader.fragmentShader = shader.fragmentShader.replace(rep.from, rep.to)
-                })
-
-                // custom uniforms
-                shader.uniforms.uTime = { value: 0.0 }
-
-                // make material's shader accessible
-                _this.shaders[_this.wolfMaterialKey] = shader
-
-                // add material to ready dictionary
-                _this.shaderMaterialsReady[_this.wolfMaterialKey] = material
-            }
         }
 
         function workMaterial(_this) {
@@ -261,7 +236,7 @@ export default class Wolf extends THREE.Group {
         }
 
         if (this.options.scene == 'about') {
-            landingMaterial(this)
+            aboutMaterial(this)
         }
 
         if (this.options.scene == 'work') {
@@ -292,6 +267,37 @@ export default class Wolf extends THREE.Group {
                     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
                 ])
             }
+
+            reflectionCube.mapping = THREE.CubeReflectionMapping
+
+            material = new THREE.MeshBasicMaterial({
+                envMap: reflectionCube,
+                reflectivity: 1.0,
+            })
+        }
+
+        function aboutMaterial(_this) {
+            const loader = new THREE.CubeTextureLoader()
+
+            const skyBoxIndex = 13
+
+            // var reflectionCube = loader.load([
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
+            //     'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
+            // ])
+
+            var reflectionCube = loader.load([
+                'assets/textures/standard/static.jpg',
+                'assets/textures/standard/static.jpg',
+                'assets/textures/standard/static.jpg',
+                'assets/textures/standard/static.jpg',
+                'assets/textures/standard/static.jpg',
+                'assets/textures/standard/static.jpg',
+            ])
 
             reflectionCube.mapping = THREE.CubeReflectionMapping
 

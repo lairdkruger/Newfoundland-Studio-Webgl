@@ -5,24 +5,39 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
-        <title>Home</title>
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css"
-        />
-        <link rel="stylesheet" href="css/style.css" />
+        <title>About</title>
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
 
-        <ul class="nav">
-            <li><a data-scene="landingScene" href="index.html">home</a></li>
-            <li><a data-scene="aboutScene" href="about.html">about</a></li>
-            <li><a data-scene="workScene" href="work.html">work</a></li>
-        </ul>
-
+        <!-- everything in this container gets changed on page change -->
         <main data-barba="container" data-barba-namespace="about">
-            <h1>about</h1>
+            <div class="about-top-link-box">
+                <a class="about-top-link-text" data-scene="landingScene" href="index.html">home</a>
+            </div>
+
+            <section class="about-section">
+                <div class="about-heading-box" <>
+                    <h2 class="about-heading">what the heck?</h2>
+                </div>
+
+                <div class="about-para-box" <>
+                    <p class="about-para">
+                        Don't let appearances fool you.. <br />
+                        We are digital specialists delivering hyper-unique web experiences.
+                        <br />
+                        <br />
+                        In a world where squarespace websites aren't cutting the mustard, who are
+                        you gonna call?
+                    </p>
+                </div>
+
+                <div class="about-bottom-link-box">
+                    <a class="about-bottom-link-text" data-scene="workScene" href="work.html"
+                        >our work</a
+                    >
+                </div>
+            </section>
         </main>
     </body>
 </html>

@@ -12,11 +12,14 @@ import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { addTVPass } from '../objects/post/TVPass'
+
 import { addBloomPass } from '../objects/post/BloomPass'
 
 // objects
 import Wolf from '../objects/Wolf'
 import Skybox from '../objects/Skybox'
+import Background from '../objects/Background'
 
 // lighting etc
 import { addTopLighting } from '../objects/lighting/TopLighting'
@@ -43,18 +46,16 @@ class AboutScene {
         // objects
         this.aboutWolf = new Wolf(webgl, {
             scene: 'about',
-            skyIndex: '10',
+            skyIndex: '13',
         })
 
         this.scene.add(this.aboutWolf)
 
-        this.aboutSkybox = new Skybox(webgl, {
-            scene: 'about',
-            skyIndex: '10',
-            noSun: false,
-        })
+        // this.aboutBackground = new Background(webgl, {
+        //     scene: 'about',
+        // })
 
-        this.scene.add(this.aboutSkybox)
+        // this.scene.add(this.aboutBackground)
     }
 
     setCamera() {
@@ -87,9 +88,16 @@ class AboutScene {
 
         addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 2.0,
+            strength: 0.0,
             radius: 1.0,
-            threshold: 0.7,
+            threshold: 0.99,
+        })
+
+        addTVPass(webgl, {
+            distortion: 0.5,
+            distortion2: 0.5,
+            speed: 0.5,
+            rollSpeed: 0.0,
         })
     }
 }

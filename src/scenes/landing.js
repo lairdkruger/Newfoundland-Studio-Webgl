@@ -8,6 +8,8 @@ Singleton:
 */
 
 import * as THREE from 'three'
+
+// global webgl singleton
 import webgl from '../lib/webgl'
 
 // postprocessing
@@ -91,11 +93,6 @@ class LandingScene {
             strength: 0.8,
             radius: 0.5,
             threshold: 0.7,
-        })
-
-        addRGBPass(webgl, {
-            amount: 0.2,
-            angle: 0.0,
         })
 
         addGrainPassLite(webgl, {})

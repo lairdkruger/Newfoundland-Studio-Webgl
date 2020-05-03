@@ -6,45 +6,56 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 
         <title>Home</title>
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/modern-normalize@0.5.0/modern-normalize.css"
-        />
-        <link rel="stylesheet" href="css/style.css" />
 
-        <!-- vue.js -->
-        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <!-- All Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet" />
+
+        <!-- Global Styles -->
+        <link rel="stylesheet" href="css/global-styles.css" />
+
+        <!-- Page Styles -->
+        <!-- All Required in index.html -->
+        <link rel="stylesheet" href="css/index-styles.css" />
+        <link rel="stylesheet" href="css/about-styles.css" />
+        <link rel="stylesheet" href="css/work-styles.css" />
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
 
-        <div class="home-navigation">
-            <div class="home-navigation-wrapper">
-                <div class="left-navigation">
-                    <a class="left-navigation-text" data-scene="workScene" href="work.html">work</a>
-                </div>
-
-                <div class="right-navigation">
-                    <a class="right-navigation-text" data-scene="aboutScene" href="about.html"
-                        >about</a
-                    >
-                </div>
-            </div>
-        </div>
-
-        <div id="app">{{message}}</div>
-
-        <script>
-            const App = new Vue({
-                el: '#app',
-                data: {
-                    message: 'Hello Vue!',
-                },
-            })
-        </script>
-
+        <!-- everything in this container gets changed on page change -->
         <main data-barba="container" data-barba-namespace="home">
-            <h1>home</h1>
+            <section class="home-section">
+                <div class="home-title-box">
+                    <h1 class="home-title">Newfoundland</h1>
+                </div>
+
+                <div class="home-navigation">
+                    <div class="home-navigation-wrapper">
+                        <div class="left-navigation">
+                            <a class="left-navigation-text" data-scene="workScene" href="work.html"
+                                >work</a
+                            >
+                        </div>
+
+                        <div class="right-navigation">
+                            <a
+                                class="right-navigation-text"
+                                data-scene="aboutScene"
+                                href="about.html"
+                                >about</a
+                            >
+                        </div>
+                        <div class="bottom-navigation">
+                            <a
+                                class="bottom-navigation-text"
+                                data-scene="aboutScene"
+                                href="about.html"
+                                >contact</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
     </body>
 </html>

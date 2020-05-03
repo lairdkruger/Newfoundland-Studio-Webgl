@@ -1,8 +1,7 @@
 /*
 Exports an instance of WebGLApp as a singleton
-To reference this instance in another file use:
-
-import webgl from './lib/webgl'
+This acts partly like a global variable
+To reference this instance in another file use: import webgl from './lib/webgl'
 */
 
 import WebGLApp from './WebGLApp'

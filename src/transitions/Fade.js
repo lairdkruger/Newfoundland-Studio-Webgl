@@ -1,5 +1,6 @@
 // GSAP Library
 import { TimelineMax } from 'gsap'
+import { TweenMax } from 'gsap'
 
 // Webgl Transitions
 import webgl from '../lib/webgl'
@@ -17,12 +18,68 @@ export default class FadeTransition {
     constructor() {}
 
     leave(data) {
+        var _this = this
+
+        // H1 animate out
+        var h1 = data.current.container.querySelectorAll('h1')
+        if (h1) {
+            for (var i = 0; i < h1.length; i++) {
+                var el = h1[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(
+                    spans,
+                    0.4,
+                    { opacity: 1, y: 0 },
+                    { opacity: 0, y: 25 },
+                    0.04
+                )
+            }
+        }
+
+        // anchor links animate out
+        var a = data.current.container.querySelectorAll('a')
+        if (a) {
+            for (var i = 0; i < a.length; i++) {
+                var el = a[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.04)
+            }
+        }
+
+        // H2 animate out
+        var h2 = data.current.container.querySelectorAll('h2')
+        if (h2) {
+            for (var i = 0; i < h2.length; i++) {
+                var el = h2[i]
+                charming(el, {
+                    split: function (string) {
+                        // Word by word
+                        return string.split(/(\s+)/)
+                    },
+                })
+                var spans = [...el.querySelectorAll('span')]
+                console.log(spans)
+
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.04)
+            }
+        }
+
+        // p animate out
+        var p = data.current.container.querySelectorAll('p')
+        if (p) {
+            for (var i = 0; i < p.length; i++) {
+                var el = p[i]
+                TweenMax.to(el, 0.5, { opacity: 0 })
+            }
+        }
+
+        // Webgl animation
         // get custom data set in html of trigger element
         var sceneKey = data.trigger.dataset.scene
 
         webgl.currentSceneParams.sceneKey = sceneKey
-
-        console.log(webgl.currentSceneParams.sceneKey)
 
         sceneTransition(webgl, webgl.currentSceneParams.sceneKey, function () {
             webgl.currentScene = webgl.scenes[sceneKey]
@@ -31,19 +88,60 @@ export default class FadeTransition {
         })
     }
 
-    enter() {
-        // create your amazing enter animation here
-        // console.log('enter')
-        // let h1 = to.querySelector('h1')
-        // charming(h1)
-        // let spans = [...h1.querySelectorAll('span')]
-        // from.remove()
-        // new TimelineMax({ onComplete: done }).staggerFromTo(
-        //     spans,
-        //     0.5,
-        //     { opacity: 0, y: 100 },
-        //     { opacity: 1, y: 0 },
-        //     0.05
-        // )
+    enter(data) {
+        // H1 animate in
+        var h1 = data.next.container.querySelectorAll('h1')
+        if (h1) {
+            for (var i = 0; i < h1.length; i++) {
+                var el = h1[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(
+                    spans,
+                    0.4,
+                    { opacity: 0, y: -25 },
+                    { opacity: 1, y: 0 },
+                    0.04
+                )
+            }
+        }
+
+        // anchor links animate in
+        var a = data.next.container.querySelectorAll('a')
+        if (a) {
+            for (var i = 0; i < a.length; i++) {
+                var el = a[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
+            }
+        }
+
+        // H2 animate in
+        var h2 = data.next.container.querySelectorAll('h2')
+        if (h2) {
+            for (var i = 0; i < h2.length; i++) {
+                var el = h2[i]
+                charming(el, {
+                    split: function (string) {
+                        // Word by word
+                        return string.split(/(\s+)/)
+                    },
+                })
+                var spans = [...el.querySelectorAll('span')]
+                console.log(spans)
+
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
+            }
+        }
+
+        // p animate in
+        var p = data.next.container.querySelectorAll('p')
+        if (p) {
+            for (var i = 0; i < p.length; i++) {
+                var el = p[i]
+                new TimelineMax({}).fromTo(el, 1.0, { opacity: 0 }, { opacity: 1 })
+            }
+        }
     }
 }
