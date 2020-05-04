@@ -1,5 +1,5 @@
 /*
-About Scene
+Contact Scene
 Handles set up and behaviour
 
 Singleton: 
@@ -8,25 +8,25 @@ Singleton:
 */
 
 import * as THREE from 'three'
+
+// global webgl singleton
 import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
-import { addTVPass } from '../objects/post/TVPass'
-import { addGrainPassLite } from '../objects/post/GrainPassLite'
-
 import { addBloomPass } from '../objects/post/BloomPass'
+import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 // objects
 import Wolf from '../objects/Wolf'
 import Skybox from '../objects/Skybox'
 
-// lighting etc
-import { addTopLighting } from '../objects/lighting/TopLighting'
+// lighting
+import { addBackLighting } from '../objects/lighting/BackLighting'
 
-class AboutScene {
+class ContactScene {
     constructor() {
-        this.sceneKey = 'aboutScene'
+        this.sceneKey = 'contactScene'
 
         // create a new scene
         webgl.scenes[this.sceneKey] = new THREE.Scene()
@@ -41,44 +41,45 @@ class AboutScene {
 
     initScene() {
         this.setCamera()
-        addTopLighting(this.scene)
+        addBackLighting(this.scene)
 
         // objects
-        this.aboutWolf = new Wolf(webgl, {
-            scene: 'about',
-            skyIndex: '13',
+        this.contactWolf = new Wolf(webgl, {
+            scene: 'contact',
+            skyIndex: '3',
+            noSun: true,
         })
 
-        this.scene.add(this.aboutWolf)
+        this.scene.add(this.contactWolf)
 
-        this.landingSkybox = new Skybox(webgl, {
-            scene: 'landing',
-            skyIndex: '15',
+        this.contactSkybox = new Skybox(webgl, {
+            scene: 'contact',
+            skyIndex: '3',
         })
 
-        this.scene.add(this.landingSkybox)
+        this.scene.add(this.contactSkybox)
     }
 
     setCamera() {
         if (webgl.orbitControls) {
             webgl.orbitControls.position = [
-                0.37272409090935477,
-                -0.032702695716682634,
-                0.4033570652813696,
+                1.1770132413546304,
+                0.657532091665101,
+                0.04683957130027806,
             ]
-            webgl.orbitControls.distance = 0.5
-            webgl.orbitControls.target = [0.2, 0, 0]
+            webgl.orbitControls.distance = 1.240000000000002
+            webgl.orbitControls.target = [0, -0.2, 0]
         } else {
             this.cameraPosition = {
-                x: 0.4,
-                y: 0.0,
-                z: 0.4,
+                x: 0.3,
+                y: -0.2,
+                z: -0.3,
             }
 
             this.cameraTarget = {
                 x: 0.0,
-                y: 0.0,
-                z: -0.4,
+                y: -0.5,
+                z: 0.05,
             }
         }
     }
@@ -86,23 +87,15 @@ class AboutScene {
     postprocessing() {
         // postprocessing
         webgl.composer = new EffectComposer(webgl.renderer)
-
         addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 0.0,
+            strength: 1.2,
             radius: 0.5,
             threshold: 0.7,
-        })
-
-        addTVPass(webgl, {
-            distortion: 0.8,
-            distortion2: 1.0,
-            speed: 0.5,
-            rollSpeed: 0.0,
         })
 
         addGrainPassLite(webgl, {})
     }
 }
 
-export default new AboutScene()
+export default new ContactScene()

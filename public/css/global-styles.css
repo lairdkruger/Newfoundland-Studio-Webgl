@@ -15,3 +15,18 @@ h1 span {
     /* for charming */
     display: inline-block;
 }
+
+.loading-screen {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    opacity: 1;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.black {
+    background-color: black;
+    left: 100vw;
+}

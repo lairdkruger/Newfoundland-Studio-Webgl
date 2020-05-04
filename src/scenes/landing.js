@@ -15,7 +15,6 @@ import webgl from '../lib/webgl'
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { addBloomPass } from '../objects/post/BloomPass'
-import { addRGBPass } from '../objects/post/RGBPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 // objects
@@ -90,7 +89,7 @@ class LandingScene {
         webgl.composer = new EffectComposer(webgl.renderer)
         addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 0.8,
+            strength: 1.2,
             radius: 0.5,
             threshold: 0.7,
         })

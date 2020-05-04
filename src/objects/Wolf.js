@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import assets from '../lib/AssetManager'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
+import { RGBA_PVRTC_2BPPV1_Format } from 'three'
 
 // preload the models
 const wolfKey = assets.queue({
@@ -102,6 +103,10 @@ export default class Wolf extends THREE.Group {
             workMaterial(_this)
         }
 
+        if (this.options.scene == 'contact') {
+            landingMaterial(_this)
+        }
+
         function landingMaterial(_this) {
             material = new THREE.MeshLambertMaterial({
                 color: 0xffffff,
@@ -174,9 +179,28 @@ export default class Wolf extends THREE.Group {
         }
 
         function workMaterial(_this) {
-            material = new THREE.MeshNormalMaterial({
+            var loader = new THREE.CubeTextureLoader()
+
+            const skyBoxIndex = _this.options.skyIndex
+
+            var reflectionCube = loader.load([
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
+            ])
+
+            // material = new THREE.MeshNormalMaterial({
+            //     skinning: true,
+            //     wireframe: false,
+            // })
+
+            material = new THREE.MeshBasicMaterial({
+                envMap: reflectionCube,
+                reflectivity: 1.0,
                 skinning: true,
-                wireframe: true,
             })
 
             const customShader = [
@@ -240,6 +264,10 @@ export default class Wolf extends THREE.Group {
 
         if (this.options.scene == 'work') {
             workMaterial(this)
+        }
+
+        if (this.options.scene == 'contact') {
+            landingMaterial(_this)
         }
 
         function landingMaterial(_this) {

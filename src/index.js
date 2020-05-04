@@ -12,6 +12,7 @@ import webgl from './lib/webgl'
 import landingScene from './scenes/landing'
 import aboutScene from './scenes/about'
 import workScene from './scenes/work'
+import contactScene from './scenes/contact'
 
 // camera
 import StaticCameraBehaviour from './objects/cameras/StaticCamera'
@@ -50,9 +51,23 @@ assets.load({ renderer: webgl.renderer }).then(() => {
                 async leave(data) {
                     const done = this.async()
                     fadeTransition.leave(data)
-                    await delay(2000)
+                    await delay(1500)
                     done()
                 },
+
+                // async afterLeave(data) {
+                //     const done = this.async()
+                //     fadeTransition.screenIn(data)
+                //     await delay(750)
+                //     done()
+                // },
+
+                // async beforeEnter(data) {
+                //     const done = this.async()
+                //     fadeTransition.screenOut(data)
+                //     await delay(10)
+                //     done()
+                // },
 
                 enter: (data) => fadeTransition.enter(data),
             },
@@ -61,23 +76,22 @@ assets.load({ renderer: webgl.renderer }).then(() => {
             // for updating settings specific to each page
             {
                 namespace: 'home',
-                async afterEnter(data) {
-                    landingScene.postprocessing()
-                },
+                beforeEnter: (data) => landingScene.postprocessing(),
             },
 
             {
                 namespace: 'about',
-                async afterEnter(data) {
-                    aboutScene.postprocessing()
-                },
+                beforeEnter: (data) => aboutScene.postprocessing(),
             },
 
             {
                 namespace: 'work',
-                async afterEnter(data) {
-                    workScene.postprocessing()
-                },
+                beforeEnter: (data) => workScene.postprocessing(),
+            },
+
+            {
+                namespace: 'contact',
+                beforeEnter: (data) => contactScene.postprocessing(),
             },
         ],
     })

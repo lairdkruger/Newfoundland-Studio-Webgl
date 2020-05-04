@@ -14,7 +14,10 @@ canvas {
 
 .about-section {
     position: relative;
-    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .about-heading-box {
@@ -26,48 +29,82 @@ canvas {
 
 .about-heading {
     font-size: 10rem;
-    color: #eeeeee;
+    padding: 25px;
+    color: #ff00ff;
+    /* background-color: rgba(0, 0, 0, 0.85); */
 }
 
 .about-para-box {
-    position: absolute;
+    position: relative;
+    align-self: flex-end;
     right: 0;
     width: 50%;
     padding-right: 50px;
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
 }
 
+.about-para-1 {
+    font-size: 1.5rem;
+    padding: 50px;
+    text-align: end;
+    color: #00f9ff;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
 .about-para {
     font-size: 1.5rem;
+    padding: 50px;
     text-align: end;
-    color: #eeeeee;
-}
-
-.about-bottom-link-box {
-    position: absolute;
-    padding-bottom: 50px;
-    padding-right: 50px;
-    bottom: 0;
-    right: 0;
-}
-
-.about-bottom-link-text {
     color: #ff00ff;
-    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 .about-top-link-box {
-    position: absolute;
+    position: fixed;
+    align-self: start;
     padding-top: 50px;
     padding-left: 50px;
     top: 0;
     left: 0;
     z-index: 2;
+    background-color: rgba(0, 0, 0, 0.85);
 }
 
 .about-top-link-text {
-    color: #eeeeee;
     font-size: 1.5rem;
+    color: #ff00ff;
+}
+
+.about-bottom-left-link-box {
+    position: fixed;
+    align-self: start;
+    padding-bottom: 50px;
+    padding-left: 50px;
+    bottom: 0;
+    left: 0;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.about-bottom-left-link-text {
+    font-size: 1.5rem;
+    color: #ff00ff;
+}
+
+.about-bottom-link-box {
+    position: relative;
+    align-self: flex-end;
+    padding-bottom: 50px;
+    padding-right: 50px;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.about-bottom-link-text {
+    font-size: 1.5rem;
+    color: #ff00ff;
 }
