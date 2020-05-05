@@ -42,10 +42,10 @@ class WorkScene {
         addWorkLighting(this.scene)
 
         // objects
-        // 10, 6, 17
+        // 10, 6, 17 16
         this.workWolf = new Wolf(webgl, {
             scene: 'work',
-            skyIndex: '6',
+            skyIndex: '16',
             noSun: false,
         })
 
@@ -53,7 +53,7 @@ class WorkScene {
 
         this.workSkybox = new Skybox(webgl, {
             scene: 'work',
-            skyIndex: '6',
+            skyIndex: '16',
             noSun: false,
         })
         this.scene.add(this.workSkybox)

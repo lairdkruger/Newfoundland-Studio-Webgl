@@ -19,7 +19,7 @@ import StaticCameraBehaviour from './objects/cameras/StaticCamera'
 
 // barba for transitions
 import barba from '@barba/core'
-import FadeTransition from './transitions/fade.js'
+import FadeTransition from './transitions/FadeTransition.js'
 
 window.DEBUG = window.location.search.includes('debug')
 
@@ -31,41 +31,33 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
 
-    function delay(n) {
-        n = n || 2000
-        return new Promise((done) => {
-            setTimeout(() => {
-                done()
-            }, n)
-        })
-    }
-
     var fadeTransition = new FadeTransition()
 
     barba.init({
         debug: true,
+        preventRunning: true, // prevent double clicking
         transitions: [
             // setting transitions between pages
             {
                 name: 'default-transition',
                 async leave(data) {
                     await fadeTransition.leave(data)
-                    //await fadeTransition.screenIn(data)
                 },
 
-                // async afterLeave(data) {
-                //     await fadeTransition.screenIn(data)
-                // },
-
-                // async beforeEnter(data) {
-                //     const done = this.async()
-                //     fadeTransition.screenOut(data)
-                //     await delay(10)
-                //     done()
-                // },
+                async enter(data) {
+                    await fadeTransition.enter(data)
+                },
+            },
+            {
+                name: 'instant-transition',
+                to: {
+                    namespace: ['about'],
+                },
+                async leave(data) {
+                    await fadeTransition.leave(data)
+                },
 
                 async enter(data) {
-                    await fadeTransition.screenIn(data)
                     await fadeTransition.enter(data)
                 },
             },
@@ -74,22 +66,30 @@ assets.load({ renderer: webgl.renderer }).then(() => {
             // for updating settings specific to each page
             {
                 namespace: 'home',
-                beforeEnter: (data) => landingScene.postprocessing(),
+                async beforeEnter(data) {
+                    landingScene.postprocessing()
+                },
             },
 
             {
                 namespace: 'about',
-                beforeEnter: (data) => aboutScene.postprocessing(),
+                async beforeEnter(data) {
+                    aboutScene.postprocessing()
+                },
             },
 
             {
                 namespace: 'work',
-                beforeEnter: (data) => workScene.postprocessing(),
+                async beforeEnter(data) {
+                    workScene.postprocessing()
+                },
             },
 
             {
                 namespace: 'contact',
-                beforeEnter: (data) => contactScene.postprocessing(),
+                async beforeEnter(data) {
+                    contactScene.postprocessing()
+                },
             },
         ],
     })

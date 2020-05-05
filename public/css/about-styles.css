@@ -1,5 +1,4 @@
 body {
-    font-family: 'VT323', monospace;
     font-weight: normal;
     font-style: normal;
     color: #eeeeee;
@@ -13,23 +12,34 @@ canvas {
 }
 
 .about-section {
+    font-family: 'VT323', monospace;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    /* variables */
+    --para-padding: 25px;
+    --background-colour: #00000f;
 }
 
 .about-heading-box {
     width: 100%;
+    margin: 0px;
+    padding: 0px;
+    padding-right: 50px;
+    padding-bottom: 25px;
     display: flex;
+    flex-direction: column;
     align-items: flex-end;
     justify-content: flex-end;
 }
 
 .about-heading {
     font-size: 10rem;
-    padding: 25px;
+    line-height: 6rem;
+    margin: 0px;
+    padding: 0px;
     color: #ff00ff;
     /* background-color: rgba(0, 0, 0, 0.85); */
 }
@@ -48,18 +58,18 @@ canvas {
 
 .about-para-1 {
     font-size: 1.5rem;
-    padding: 50px;
+    padding: var(--para-padding);
     text-align: end;
     color: #00f9ff;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-colour);
 }
 
 .about-para {
     font-size: 1.5rem;
-    padding: 50px;
+    padding: var(--para-padding);
     text-align: end;
     color: #ff00ff;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-colour);
 }
 
 .about-top-link-box {
@@ -70,7 +80,7 @@ canvas {
     top: 0;
     left: 0;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-colour);
 }
 
 .about-top-link-text {
@@ -86,7 +96,7 @@ canvas {
     bottom: 0;
     left: 0;
     z-index: 2;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-colour);
 }
 
 .about-bottom-left-link-text {
@@ -101,7 +111,7 @@ canvas {
     padding-right: 50px;
     bottom: 0;
     right: 0;
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--background-colour);
 }
 
 .about-bottom-link-text {

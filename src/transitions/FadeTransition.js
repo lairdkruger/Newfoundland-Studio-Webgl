@@ -28,17 +28,18 @@ export default class FadeTransition {
         )
     }
 
-    async screenIn(data) {
-        var _this = this
-        var screen = document.getElementById('loading-screen')
-        var tl = TweenLite.to(screen, 0.4, { x: 0 })
+    async screenIn() {
+        var screen = document.getElementsByClassName('loading-screen')[0]
+
+        var tl = TweenLite.to(screen, { left: 0, duration: 0.5 })
         await tl
     }
 
-    screenOut(data) {
-        var _this = this
-        var screens = document.getElementsByClassName('loading-screen')[0]
-        new TimelineMax({}).fromTo(screens, 0.4, { x: 0 }, { x: -500 }, 0.04)
+    async screenOut() {
+        var screen = document.getElementsByClassName('loading-screen')[0]
+        var tl = TweenLite.to(screen, { left: '-100vw', duration: 0.5 })
+        await tl
+        screen.style.left = '100vw' // reset loading screen
     }
 
     async leave(data) {
@@ -113,16 +114,7 @@ export default class FadeTransition {
 
         webgl.currentSceneParams.sceneKey = sceneKey
 
-        await sceneTransition(
-            webgl,
-            webgl.currentSceneParams.sceneKey,
-            this.webglDuration,
-            function () {
-                // webgl.currentScene = webgl.scenes[sceneKey]
-                // webgl.currentSceneParams = webgl.scenesParams[sceneKey]
-                // webgl.camera.inTransition = false
-            }
-        )
+        await sceneTransition(webgl, webgl.currentSceneParams.sceneKey, this.webglDuration)
 
         async function setNewScene() {
             webgl.currentScene = webgl.scenes[sceneKey]
@@ -130,46 +122,40 @@ export default class FadeTransition {
             webgl.camera.inTransition = false
         }
 
+        // Screen in before material update
+        await this.screenIn()
+
+        // Updates new scene (materials change here)
         await setNewScene()
     }
 
     async enter(data) {
-        // H1 animate in
-        var h1 = data.next.container.querySelectorAll('h1')
-        if (h1) {
-            for (var i = 0; i < h1.length; i++) {
-                var el = h1[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(
-                    spans,
-                    0.4,
-                    { opacity: 0, y: -25 },
-                    { opacity: 1, y: 0 },
-                    0.04
-                )
-            }
-        }
-        // anchor links animate in
-        var a = data.next.container.querySelectorAll('a')
-        if (a) {
-            for (var i = 0; i < a.length; i++) {
-                var el = a[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
-            }
-        }
+        // Screen our after material update
 
-        // H3 animate in
-        var h3 = data.next.container.querySelectorAll('h3')
-        if (h3) {
-            for (var i = 0; i < h3.length; i++) {
-                var el = h3[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(spans, 0.4, { opacity: 0 }, { opacity: 1 }, 0.04)
-            }
-        }
+        this.screenOut()
+
+        // var everything = data.next.container
+        // console.log(everything)
+
+        // if (everything) {
+        //     TweenMax.to(everything, 0.5, { opacity: 1 })
+        // }
+
+        // H3 animate in (contact section)
+        // var h3 = data.next.container.querySelectorAll('h3')
+        // if (h3) {
+        //     for (var i = 0; i < h3.length; i++) {
+        //         var el = h3[i]
+        //         charming(el)
+        //         var spans = [...el.querySelectorAll('span')]
+        //         var tl = new TimelineMax({}).staggerFromTo(
+        //             spans,
+        //             0.4,
+        //             { opacity: 0 },
+        //             { opacity: 1 },
+        //             0.04
+        //         )
+        //     }
+        // }
     }
 }
