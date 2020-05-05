@@ -43,18 +43,21 @@ class ContactScene {
         this.setCamera()
         addBackLighting(this.scene)
 
+        // 7 12 16
+        this.sky = '16'
+
         // objects
         this.contactWolf = new Wolf(webgl, {
             scene: 'contact',
-            skyIndex: '3',
-            noSun: true,
+            skyIndex: this.sky,
+            noSun: false,
         })
 
         this.scene.add(this.contactWolf)
 
         this.contactSkybox = new Skybox(webgl, {
             scene: 'contact',
-            skyIndex: '3',
+            skyIndex: this.sky,
         })
 
         this.scene.add(this.contactSkybox)
@@ -71,9 +74,9 @@ class ContactScene {
             webgl.orbitControls.target = [0, -0.2, 0]
         } else {
             this.cameraPosition = {
-                x: 0.3,
+                x: 0.2,
                 y: -0.2,
-                z: -0.3,
+                z: -0.2,
             }
 
             this.cameraTarget = {

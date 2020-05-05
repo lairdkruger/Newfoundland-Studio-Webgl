@@ -1,6 +1,6 @@
 import { TweenLite } from 'gsap'
 
-export function sceneTransition(webgl, sceneKey, duration, afterTransition) {
+export async function sceneTransition(webgl, sceneKey, duration, afterTransition) {
     if (window.DEBUG) return
     webgl.camera.inTransition = true
 
@@ -38,4 +38,6 @@ export function sceneTransition(webgl, sceneKey, duration, afterTransition) {
         duration: duration,
         ease: ease,
     })
+
+    await cameraTween
 }

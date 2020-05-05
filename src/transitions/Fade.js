@@ -1,6 +1,7 @@
 // GSAP Library
 import { TimelineMax } from 'gsap'
 import { TweenMax } from 'gsap'
+import { TweenLite } from 'gsap'
 
 // Webgl Transitions
 import webgl from '../lib/webgl'
@@ -27,10 +28,11 @@ export default class FadeTransition {
         )
     }
 
-    screenIn(data) {
+    async screenIn(data) {
         var _this = this
-        var screens = document.getElementsByClassName('loading-screen')[0]
-        new TimelineMax({}).fromTo(screens, 0.4, { x: 500 }, { x: 0 }, 0.04)
+        var screen = document.getElementById('loading-screen')
+        var tl = TweenLite.to(screen, 0.4, { x: 0 })
+        await tl
     }
 
     screenOut(data) {
@@ -39,7 +41,7 @@ export default class FadeTransition {
         new TimelineMax({}).fromTo(screens, 0.4, { x: 0 }, { x: -500 }, 0.04)
     }
 
-    leave(data) {
+    async leave(data) {
         var _this = this
 
         // H1 animate out
@@ -66,12 +68,28 @@ export default class FadeTransition {
                 var el = a[i]
                 charming(el)
                 var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.04)
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.02)
+            }
+        }
+
+        // H3 animate out
+        var h3 = data.current.container.querySelectorAll('h3')
+        if (h3) {
+            for (var i = 0; i < h3.length; i++) {
+                var el = h3[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(
+                    spans,
+                    0.4,
+                    { opacity: 1, y: 0 },
+                    { opacity: 0, y: 25 },
+                    0.01
+                )
             }
         }
 
         // H2 animate out
-        // p animate out
         var h2 = data.current.container.querySelectorAll('h2')
         if (h2) {
             for (var i = 0; i < h2.length; i++) {
@@ -95,62 +113,63 @@ export default class FadeTransition {
 
         webgl.currentSceneParams.sceneKey = sceneKey
 
-        sceneTransition(webgl, webgl.currentSceneParams.sceneKey, this.webglDuration, function () {
+        await sceneTransition(
+            webgl,
+            webgl.currentSceneParams.sceneKey,
+            this.webglDuration,
+            function () {
+                // webgl.currentScene = webgl.scenes[sceneKey]
+                // webgl.currentSceneParams = webgl.scenesParams[sceneKey]
+                // webgl.camera.inTransition = false
+            }
+        )
+
+        async function setNewScene() {
             webgl.currentScene = webgl.scenes[sceneKey]
             webgl.currentSceneParams = webgl.scenesParams[sceneKey]
             webgl.camera.inTransition = false
-        })
+        }
+
+        await setNewScene()
     }
 
-    enter(data) {
+    async enter(data) {
         // H1 animate in
-        // var h1 = data.next.container.querySelectorAll('h1')
-        // if (h1) {
-        //     for (var i = 0; i < h1.length; i++) {
-        //         var el = h1[i]
-        //         charming(el)
-        //         var spans = [...el.querySelectorAll('span')]
-        //         new TimelineMax({}).staggerFromTo(
-        //             spans,
-        //             0.4,
-        //             { opacity: 0, y: -25 },
-        //             { opacity: 1, y: 0 },
-        //             0.04
-        //         )
-        //     }
-        // }
-        // // anchor links animate in
-        // var a = data.next.container.querySelectorAll('a')
-        // if (a) {
-        //     for (var i = 0; i < a.length; i++) {
-        //         var el = a[i]
-        //         charming(el)
-        //         var spans = [...el.querySelectorAll('span')]
-        //         new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
-        //     }
-        // }
-        // // H2 animate in
-        // var h2 = data.next.container.querySelectorAll('h2')
-        // if (h2) {
-        //     for (var i = 0; i < h2.length; i++) {
-        //         var el = h2[i]
-        //         charming(el, {
-        //             split: function (string) {
-        //                 // Word by word
-        //                 return string.split(/(\s+)/)
-        //             },
-        //         })
-        //         var spans = [...el.querySelectorAll('span')]
-        //         new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
-        //     }
-        // }
-        // // p animate in
-        // var p = data.next.container.querySelectorAll('p')
-        // if (p) {
-        //     for (var i = 0; i < p.length; i++) {
-        //         var el = p[i]
-        //         new TimelineMax({}).fromTo(el, 1.0, { opacity: 0 }, { opacity: 1 })
-        //     }
-        // }
+        var h1 = data.next.container.querySelectorAll('h1')
+        if (h1) {
+            for (var i = 0; i < h1.length; i++) {
+                var el = h1[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(
+                    spans,
+                    0.4,
+                    { opacity: 0, y: -25 },
+                    { opacity: 1, y: 0 },
+                    0.04
+                )
+            }
+        }
+        // anchor links animate in
+        var a = data.next.container.querySelectorAll('a')
+        if (a) {
+            for (var i = 0; i < a.length; i++) {
+                var el = a[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 0 }, { opacity: 1 }, 0.04)
+            }
+        }
+
+        // H3 animate in
+        var h3 = data.next.container.querySelectorAll('h3')
+        if (h3) {
+            for (var i = 0; i < h3.length; i++) {
+                var el = h3[i]
+                charming(el)
+                var spans = [...el.querySelectorAll('span')]
+                new TimelineMax({}).staggerFromTo(spans, 0.4, { opacity: 0 }, { opacity: 1 }, 0.04)
+            }
+        }
     }
 }

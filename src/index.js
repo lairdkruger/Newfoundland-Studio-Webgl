@@ -49,17 +49,12 @@ assets.load({ renderer: webgl.renderer }).then(() => {
             {
                 name: 'default-transition',
                 async leave(data) {
-                    const done = this.async()
-                    fadeTransition.leave(data)
-                    await delay(1500)
-                    done()
+                    await fadeTransition.leave(data)
+                    //await fadeTransition.screenIn(data)
                 },
 
                 // async afterLeave(data) {
-                //     const done = this.async()
-                //     fadeTransition.screenIn(data)
-                //     await delay(750)
-                //     done()
+                //     await fadeTransition.screenIn(data)
                 // },
 
                 // async beforeEnter(data) {
@@ -69,7 +64,10 @@ assets.load({ renderer: webgl.renderer }).then(() => {
                 //     done()
                 // },
 
-                enter: (data) => fadeTransition.enter(data),
+                async enter(data) {
+                    await fadeTransition.screenIn(data)
+                    await fadeTransition.enter(data)
+                },
             },
         ],
         views: [
