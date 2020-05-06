@@ -32,6 +32,9 @@ export async function sceneTransition(webgl, sceneKey, duration) {
         onUpdate: function () {
             webgl.camera.lookAt(cameraTarget.x, cameraTarget.y, cameraTarget.z)
         },
+        onComplete: function () {
+            return
+        },
         duration: duration,
         ease: ease,
     })

@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import assets from '../lib/AssetManager'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-import { RGBA_PVRTC_2BPPV1_Format } from 'three'
 
 // preload the models
 const wolfKey = assets.queue({

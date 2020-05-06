@@ -17,8 +17,6 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 import { addTVPass } from '../objects/post/TVPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
-import { addBloomPass } from '../objects/post/BloomPass'
-
 // objects
 import Wolf from '../objects/Wolf'
 import Skybox from '../objects/Skybox'
@@ -91,13 +89,6 @@ class AboutScene {
         webgl.composer = new EffectComposer(webgl.renderer)
         var renderPass = new RenderPass(this.scene, webgl.camera)
         webgl.composer.addPass(renderPass)
-
-        // addBloomPass(webgl, this.scene, {
-        //     resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-        //     strength: 0.0,
-        //     radius: 0.5,
-        //     threshold: 0.7,
-        // })
 
         addTVPass(webgl, {
             distortion: 0.8,

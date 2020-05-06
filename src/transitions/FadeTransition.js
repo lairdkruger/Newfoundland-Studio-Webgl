@@ -7,25 +7,12 @@ import { TweenLite } from 'gsap'
 import webgl from '../lib/webgl'
 import { sceneTransition } from './WebGLTransition'
 
-// Scenes
-import landingScene from '../scenes/landing'
-import aboutScene from '../scenes/about'
-import workScene from '../scenes/work'
-
 const charming = require('charming')
 
 // Fade
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
-    }
-
-    //converts viewport units to pixels (like "50vw" or "20vh" into pixels)
-    toPX(value) {
-        return (
-            (parseFloat(value) / 100) *
-            (/vh/gi.test(value) ? window.innerHeight : window.innerWidth)
-        )
     }
 
     async screenIn() {
@@ -135,32 +122,8 @@ export default class FadeTransition {
     }
 
     async enter(data) {
-        // Screen our after material update
+        // Screen out after material update
 
         this.screenOut()
-
-        // var everything = data.next.container
-        // console.log(everything)
-
-        // if (everything) {
-        //     TweenMax.to(everything, 0.5, { opacity: 1 })
-        // }
-
-        // H3 animate in (contact section)
-        // var h3 = data.next.container.querySelectorAll('h3')
-        // if (h3) {
-        //     for (var i = 0; i < h3.length; i++) {
-        //         var el = h3[i]
-        //         charming(el)
-        //         var spans = [...el.querySelectorAll('span')]
-        //         var tl = new TimelineMax({}).staggerFromTo(
-        //             spans,
-        //             0.4,
-        //             { opacity: 0 },
-        //             { opacity: 1 },
-        //             0.04
-        //         )
-        //     }
-        // }
     }
 }

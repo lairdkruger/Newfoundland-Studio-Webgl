@@ -16,7 +16,6 @@ import webgl from '../lib/webgl'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 
-import { addBloomPass } from '../objects/post/BloomPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 // objects
