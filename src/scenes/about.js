@@ -12,15 +12,14 @@ import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+
 import { addTVPass } from '../objects/post/TVPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
-
-import { addBloomPass } from '../objects/post/BloomPass'
 
 // objects
 import Wolf from '../objects/Wolf'
 import Skybox from '../objects/Skybox'
-import Background from '../objects/Background'
 
 // lighting etc
 import { addTopLighting } from '../objects/lighting/TopLighting'
@@ -52,11 +51,12 @@ class AboutScene {
 
         this.scene.add(this.aboutWolf)
 
-        // this.aboutBackground = new Background(webgl, {
-        //     scene: 'about',
-        // })
+        this.landingSkybox = new Skybox(webgl, {
+            scene: 'landing',
+            skyIndex: '15',
+        })
 
-        // this.scene.add(this.aboutBackground)
+        this.scene.add(this.landingSkybox)
     }
 
     setCamera() {
@@ -85,14 +85,10 @@ class AboutScene {
 
     postprocessing() {
         // postprocessing
+        // essential basic render (required in all scenes)
         webgl.composer = new EffectComposer(webgl.renderer)
-
-        addBloomPass(webgl, this.scene, {
-            resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 0.0,
-            radius: 0.5,
-            threshold: 0.7,
-        })
+        var renderPass = new RenderPass(this.scene, webgl.camera)
+        webgl.composer.addPass(renderPass)
 
         addTVPass(webgl, {
             distortion: 0.8,

@@ -18,9 +18,14 @@
         <link rel="stylesheet" href="css/index-styles.css" />
         <link rel="stylesheet" href="css/about-styles.css" />
         <link rel="stylesheet" href="css/work-styles.css" />
+        <link rel="stylesheet" href="css/contact-styles.css" />
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
+
+        <div class="loading-container">
+            <div class="loading-screen"></div>
+        </div>
 
         <!-- everything in this container gets changed on page change -->
         <main data-barba="container" data-barba-namespace="home">
@@ -48,8 +53,8 @@
                         <div class="bottom-navigation">
                             <a
                                 class="bottom-navigation-text"
-                                data-scene="aboutScene"
-                                href="about.html"
+                                data-scene="contactScene"
+                                href="contact.html"
                                 >contact</a
                             >
                         </div>

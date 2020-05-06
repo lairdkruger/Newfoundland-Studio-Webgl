@@ -14,8 +14,9 @@ import webgl from '../lib/webgl'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+
 import { addBloomPass } from '../objects/post/BloomPass'
-import { addRGBPass } from '../objects/post/RGBPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 // objects
@@ -87,10 +88,14 @@ class LandingScene {
 
     postprocessing() {
         // postprocessing
+        // essential basic render (required in all scenes)
         webgl.composer = new EffectComposer(webgl.renderer)
+        var renderPass = new RenderPass(this.scene, webgl.camera)
+        webgl.composer.addPass(renderPass)
+
         addBloomPass(webgl, this.scene, {
             resolution: new THREE.Vector2(window.innerWidth, window.innerHeight),
-            strength: 0.8,
+            strength: 1.2,
             radius: 0.5,
             threshold: 0.7,
         })

@@ -19,7 +19,8 @@ import { addWorkLighting } from '../objects/lighting/WorkLighting'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
-import { addBloomPass } from '../objects/post/BloomPass'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 class WorkScene {
@@ -42,9 +43,10 @@ class WorkScene {
         addWorkLighting(this.scene)
 
         // objects
+        // 10, 6, 17 16
         this.workWolf = new Wolf(webgl, {
             scene: 'work',
-            skyIndex: '12',
+            skyIndex: '16',
             noSun: false,
         })
 
@@ -52,7 +54,7 @@ class WorkScene {
 
         this.workSkybox = new Skybox(webgl, {
             scene: 'work',
-            skyIndex: '12',
+            skyIndex: '16',
             noSun: false,
         })
         this.scene.add(this.workSkybox)
@@ -84,10 +86,10 @@ class WorkScene {
 
     postprocessing() {
         // postprocessing
+        // essential basic render (required in all scenes)
         webgl.composer = new EffectComposer(webgl.renderer)
-
-        //var renderPass = new RenderPass(this.scene, webgl.camera)
-        //webgl.composer.addPass(renderPass)
+        var renderPass = new RenderPass(this.scene, webgl.camera)
+        webgl.composer.addPass(renderPass)
 
         addGrainPassLite(webgl, {})
     }

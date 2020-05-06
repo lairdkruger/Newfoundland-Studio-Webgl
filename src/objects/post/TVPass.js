@@ -1,5 +1,4 @@
 import { ShaderPass } from 'three/examples/jsm/postprocessing/ShaderPass'
-import { ConeBufferGeometry } from 'three'
 
 export function addTVPass(webgl, options) {
     var tvPass = new ShaderPass(TVShader)

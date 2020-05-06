@@ -7,13 +7,10 @@
     font-style: normal;
 }
 
-body {
+.home-section {
     font-family: 'Blackletter', sans-serif;
     font-weight: normal;
     font-style: normal;
-}
-
-.home-section {
     height: 100vh;
     width: 100%;
 }

@@ -1,10 +1,10 @@
 import { TweenLite } from 'gsap'
 
-export function sceneTransition(webgl, sceneKey, afterTransition) {
+export async function sceneTransition(webgl, sceneKey, duration) {
     if (window.DEBUG) return
     webgl.camera.inTransition = true
 
-    var duration = 2.5
+    var duration = duration / 1000
     var ease = 'power4.inOut'
 
     var scene = webgl.scenesParams[sceneKey]
@@ -16,7 +16,7 @@ export function sceneTransition(webgl, sceneKey, afterTransition) {
     }
 
     // tween between the two pivot targets of each scene
-    var directionTween = TweenLite.to(cameraTarget, 2, {
+    var directionTween = TweenLite.to(cameraTarget, {
         x: scene.cameraTarget.x,
         y: scene.cameraTarget.y,
         z: scene.cameraTarget.z,
@@ -25,7 +25,7 @@ export function sceneTransition(webgl, sceneKey, afterTransition) {
     })
 
     // tween the camera to its new position
-    var cameraTween = TweenLite.to(webgl.camera.position, 2, {
+    var cameraTween = TweenLite.to(webgl.camera.position, {
         x: scene.cameraPosition.x,
         y: scene.cameraPosition.y,
         z: scene.cameraPosition.z,
@@ -33,9 +33,11 @@ export function sceneTransition(webgl, sceneKey, afterTransition) {
             webgl.camera.lookAt(cameraTarget.x, cameraTarget.y, cameraTarget.z)
         },
         onComplete: function () {
-            afterTransition()
+            return
         },
         duration: duration,
         ease: ease,
     })
+
+    await cameraTween
 }

@@ -12,13 +12,14 @@ import webgl from './lib/webgl'
 import landingScene from './scenes/landing'
 import aboutScene from './scenes/about'
 import workScene from './scenes/work'
+import contactScene from './scenes/contact'
 
 // camera
 import StaticCameraBehaviour from './objects/cameras/StaticCamera'
 
 // barba for transitions
 import barba from '@barba/core'
-import FadeTransition from './transitions/fade.js'
+import FadeTransition from './transitions/FadeTransition.js'
 
 window.DEBUG = window.location.search.includes('debug')
 
@@ -30,53 +31,51 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
 
-    function delay(n) {
-        n = n || 2000
-        return new Promise((done) => {
-            setTimeout(() => {
-                done()
-            }, n)
-        })
-    }
-
     var fadeTransition = new FadeTransition()
 
     barba.init({
-        debug: true,
+        // debug: true,
+        preventRunning: true, // prevent double clicking
         transitions: [
             // setting transitions between pages
             {
                 name: 'default-transition',
                 async leave(data) {
-                    const done = this.async()
-                    fadeTransition.leave(data)
-                    await delay(2000)
-                    done()
+                    await fadeTransition.leave(data)
                 },
 
-                enter: (data) => fadeTransition.enter(data),
+                async enter(data) {
+                    await fadeTransition.enter(data)
+                },
             },
         ],
         views: [
             // for updating settings specific to each page
             {
                 namespace: 'home',
-                async afterEnter(data) {
+                async beforeEnter(data) {
                     landingScene.postprocessing()
                 },
             },
 
             {
                 namespace: 'about',
-                async afterEnter(data) {
+                async beforeEnter(data) {
                     aboutScene.postprocessing()
                 },
             },
 
             {
                 namespace: 'work',
-                async afterEnter(data) {
+                async beforeEnter(data) {
                     workScene.postprocessing()
+                },
+            },
+
+            {
+                namespace: 'contact',
+                async beforeEnter(data) {
+                    contactScene.postprocessing()
                 },
             },
         ],

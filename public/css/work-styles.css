@@ -1,0 +1,91 @@
+@font-face {
+    font-family: 'Messapia Regular';
+    src: url('../fonts/Messapia/Regular/Messapia-Regular.eot');
+    src: url('../fonts/Messapia/Regular/Messapia-Regular.woff2') format('woff2'),
+        url('../fonts/Messapia/Regular/Messapia-Regular.woff') format('woff'),
+        url('../fonts/Messapia/Regular/Messapia-Regular.ttf') format('truetype'),
+        url('../fonts/Messapia/Regular/Messapia-Regular.svg') format('svg');
+}
+
+@font-face {
+    font-family: 'Messapia Bold';
+    src: url('../fonts/Messapia/Bold/Messapia-Bold.eot');
+    src: url('../fonts/Messapia/Bold/Messapia-Bold.woff2') format('woff2'),
+        url('../fonts/Messapia/Bold/Messapia-Bold.woff') format('woff'),
+        url('../fonts/Messapia/Bold/Messapia-Bold.ttf') format('truetype'),
+        url('../fonts/Messapia/Bold/Messapia-Bold.svg') format('svg');
+}
+
+.work-section {
+    font-family: 'Messapia Bold', sans-serif;
+    font-weight: normal;
+    font-style: normal;
+}
+
+.work-nav-box {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: start;
+    top: 0;
+    right: 0;
+    padding-top: 50px;
+    padding-right: 25px;
+}
+
+.work-nav {
+    color: #eeeeee;
+    font-size: 1rem;
+}
+
+/* List section */
+
+.work-list-section {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin-left: 25px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: flex-start;
+}
+
+.work-heading-box {
+    padding: 0;
+    margin: 0;
+}
+
+.work-heading {
+    padding: 0;
+    margin: 0;
+    font-size: 4rem;
+}
+
+.work-list-box {
+    margin-top: 25px;
+    margin-left: 50px;
+    padding-left: 25px;
+    display: flex;
+    flex-direction: column;
+    border-left: 5px solid #eeeeee;
+}
+
+.work-list-item-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.work-list-items-box {
+    border-left: 5px solid #eeeeee;
+    padding-left: 25px;
+    padding-bottom: 25vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.work-list-item {
+    color: #eeeeee;
+}
