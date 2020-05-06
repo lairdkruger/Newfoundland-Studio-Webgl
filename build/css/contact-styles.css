@@ -1,0 +1,107 @@
+@font-face {
+    font-family: 'Novar';
+    src: url('../fonts/Novar/Novar.eot');
+    src: url('../fonts/Novar/Novar.woff') format('woff'),
+        url('../fonts/Novar/Novar.woff2') format('woff2'),
+        url('../fonts/Novar/Novar.ttf') format('truetype'),
+        url('../fonts/Novar/Novar.svg') format('svg');
+}
+
+body {
+    font-family: 'Novar', serif;
+    font-weight: normal;
+    font-style: normal;
+    color: #eeeeee;
+}
+
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.contact-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.contact-info-box {
+    width: 80%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.keen-paragraph {
+    margin-top: 10vh;
+    align-self: flex-end;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: start;
+}
+
+.info-paragraph {
+    font-size: 1.5rem;
+    color: #eeeeee;
+}
+
+.eye {
+    align-self: flex-start;
+}
+
+.coffee {
+    margin: 0;
+    padding: 0;
+}
+
+.beer {
+    align-self: center;
+    margin: 0;
+    padding: 0;
+}
+
+.yarn {
+    align-self: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+.ether {
+    margin-top: 10vh;
+    align-self: flex-start;
+}
+
+.email {
+    margin-top: 10vh;
+    text-decoration: underline;
+}
+
+.navigation-box {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: end;
+}
+
+.navigation {
+}
+
+.navigation-text {
+    font-size: 1.5rem;
+    color: #eeeeee;
+    text-align: end;
+}
