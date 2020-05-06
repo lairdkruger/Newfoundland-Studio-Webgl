@@ -19,6 +19,8 @@ import { addWorkLighting } from '../objects/lighting/WorkLighting'
 
 // postprocessing
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
+
 import { addBloomPass } from '../objects/post/BloomPass'
 import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
@@ -85,10 +87,10 @@ class WorkScene {
 
     postprocessing() {
         // postprocessing
+        // essential basic render (required in all scenes)
         webgl.composer = new EffectComposer(webgl.renderer)
-
-        //var renderPass = new RenderPass(this.scene, webgl.camera)
-        //webgl.composer.addPass(renderPass)
+        var renderPass = new RenderPass(this.scene, webgl.camera)
+        webgl.composer.addPass(renderPass)
 
         addGrainPassLite(webgl, {})
     }

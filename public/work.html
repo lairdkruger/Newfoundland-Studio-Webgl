@@ -17,8 +17,8 @@
         <!-- All Required in index.html -->
         <link rel="stylesheet" href="css/index-styles.css" />
         <link rel="stylesheet" href="css/about-styles.css" />
-        <link rel="stylesheet" href="css/work-styles.css" />
         <link rel="stylesheet" href="css/contact-styles.css" />
+        <link rel="stylesheet" href="css/work-styles.css" />
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
@@ -27,15 +27,58 @@
             <div class="loading-screen"></div>
         </div>
 
-        <ul class="nav">
-            <li><a data-scene="landingScene" href="index.html">home</a></li>
-            <li><a data-scene="aboutScene" href="about.html">about</a></li>
-            <li><a data-scene="workScene" href="work.html">work</a></li>
-        </ul>
-
         <!-- everything in this container gets changed on page change -->
         <main data-barba="container" data-barba-namespace="work">
-            <h1>work</h1>
+            <div class="work-section">
+                <div class="work-nav-box">
+                    <a class="work-nav" data-scene="landingScene" href="index.html">Home</a>
+                    <a class="work-nav" data-scene="aboutScene" href="about.html">About</a>
+                    <a class="work-nav" data-scene="contactScene" href="contact.html">Contact</a>
+                </div>
+
+                <div class="work-list-section">
+                    <div class="work-heading-box">
+                        <h2 class="work-heading">Work</h2>
+                    </div>
+                    <div class="work-list-box">
+                        <div class="work-list-item-box">
+                            <div class="work-list-heading-box">
+                                <h3 class="work-list-heading">Case Studies</h3>
+                            </div>
+                            <div class="work-list-items-box">
+                                <a
+                                    class="work-list-item"
+                                    href="https://lairdkruger.github.io/Audio-Visualizers/"
+                                    target="_blank"
+                                    >Audio Visualizers</a
+                                >
+                                <a
+                                    class="work-list-item"
+                                    href="https://lairdkruger.github.io/Curtains-Menu-Transitions/"
+                                    target="_blank"
+                                    >Webgl Transitions</a
+                                >
+                            </div>
+                        </div>
+                        <div class="work-list-item-box">
+                            <div class="work-list-heading-box">
+                                <h3 class="work-list-heading">Other</h3>
+                            </div>
+                            <div class="work-list-items-box">
+                                <a class="work-list-item" href="" target="_blank"
+                                    >Click Digital (soon)</a
+                                >
+                                <a
+                                    class="work-list-item"
+                                    href="https://lairdkruger.github.io/Kierans-Gallery-V1/"
+                                    target="_blank"
+                                    >Kieran's Gallery (demo)</a
+                                >
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
     </body>
 </html>
