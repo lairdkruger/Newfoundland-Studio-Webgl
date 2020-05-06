@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Schwabacher';
+    src: url('fonts/Schwabacher.eot');
+    src: url('fonts/Schwabacher.eot?#iefix') format('embedded-opentype'),
+         url('fonts/Schwabacher.woff2') format('woff2'),
+         url('fonts/Schwabacher.woff') format('woff'),
+         url('fonts/Schwabacher.ttf')  format('truetype'),
+         url('fonts/Schwabacher.svg#Schwabacher') format('svg');
+}
