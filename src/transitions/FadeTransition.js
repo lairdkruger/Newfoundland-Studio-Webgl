@@ -108,6 +108,11 @@ export default class FadeTransition {
             }
         }
 
+        var everything = data.current.container
+        if (everything) {
+            TweenMax.to(everything, 0.8, { delay: 0.5, opacity: 0 })
+        }
+
         // Webgl animation
         // get custom data set in html of trigger element
         var sceneKey = data.trigger.dataset.scene
