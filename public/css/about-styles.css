@@ -7,21 +7,9 @@
         url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.svg') format('svg');
 }
 
-body {
-    font-weight: normal;
-    font-style: normal;
-    color: #eeeeee;
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
 .about-section {
     font-family: 'Bebas Neue', cursive;
+    color: #eeeeee;
     /* font-size: 2rem; */
     width: 100%;
     position: relative;
@@ -62,7 +50,7 @@ canvas {
     line-height: 5rem;
     text-align: justify;
 
-    background: linear-gradient(to bottom left, #e2d4d8, #eeeeee);
+    background: linear-gradient(to bottom right, #e2d4d8, #eeeeee);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

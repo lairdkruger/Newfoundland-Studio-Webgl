@@ -13,21 +13,88 @@ const charming = require('charming')
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
-        this.screenDuration = 0.3
+        this.screenDuration = 0.4
+        this.screenEase = 'linear'
     }
 
     async screenIn() {
-        var screen = document.getElementsByClassName('loading-screen')[0]
+        var leftScreens = document.getElementsByClassName('loading-screen-left')
+        var rightScreens = document.getElementsByClassName('loading-screen-right')
+        var tl
+        for (var i = 0; i < leftScreens.length; i++) {
+            tl = TweenMax.to(leftScreens[i], this.screenDuration, {
+                left: 0,
+                ease: this.screenEase,
+            })
+        }
 
-        var tl = TweenLite.to(screen, { left: 0, duration: this.screenDuration })
+        for (var i = 0; i < rightScreens.length; i++) {
+            tl = TweenMax.to(rightScreens[i], this.screenDuration, {
+                right: 0,
+                ease: this.screenEase,
+            })
+        }
+
+        // staggered
+        // var tl = new TimelineMax({}).staggerTo(
+        //     leftScreens,
+        //     this.screenDuration,
+        //     { left: 0 },
+        //     this.screenDuration
+        // )
+        // var tl = new TimelineMax({}).staggerTo(
+        //     rightScreens,
+        //     this.screenDuration,
+        //     { right: 0, delay: this.screenDuration / 2 },
+        //     this.screenDuration
+        // )
+
         await tl
     }
 
     async screenOut() {
-        var screen = document.getElementsByClassName('loading-screen')[0]
-        var tl = TweenLite.to(screen, { left: '-100vw', duration: this.screenDuration })
+        var leftScreens = document.getElementsByClassName('loading-screen-left')
+        var rightScreens = document.getElementsByClassName('loading-screen-right')
+        var tl
+
+        for (var i = 0; i < leftScreens.length; i++) {
+            tl = TweenMax.to(leftScreens[i], this.screenDuration, {
+                left: '-100vw',
+                ease: this.screenEase,
+            })
+        }
+
+        for (var i = 0; i < rightScreens.length; i++) {
+            tl = TweenMax.to(rightScreens[i], this.screenDuration, {
+                right: '-100vw',
+                ease: this.screenEase,
+            })
+        }
+
+        // staggered
+        // var tl = new TimelineMax({}).staggerTo(
+        //     leftScreens,
+        //     this.screenDuration,
+        //     { left: '-100vw' },
+        //     this.screenDuration
+        // )
+        // var tl = new TimelineMax({}).staggerTo(
+        //     rightScreens,
+        //     this.screenDuration,
+        //     { right: '-100vw', delay: this.screenDuration / 2 },
+        //     this.screenDuration
+        // )
+
         await tl
-        screen.style.left = '100vw' // reset loading screen
+
+        // reset bars
+        for (var i = 0; i < leftScreens.length; i++) {
+            tl = TweenMax.set(leftScreens[i], { left: '100vw' })
+        }
+
+        for (var i = 0; i < rightScreens.length; i++) {
+            tl = TweenMax.set(rightScreens[i], { right: '100vw' })
+        }
     }
 
     async leave(data) {

@@ -16,21 +16,9 @@
         url('../fonts/Faune/Faune-TextItalic.svg') format('svg');
 }
 
-body {
-    font-family: 'Faune', serif;
-    font-weight: normal;
-    font-style: normal;
-    color: #eeeeee;
-}
-
-canvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
-
 .contact-section {
+    font-family: 'Faune', serif;
+    color: #eeeeee;
     position: relative;
     width: 100%;
     min-height: 100vh;
