@@ -13,20 +13,59 @@ const charming = require('charming')
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
+        this.screenDuration = 3.0
     }
 
     async screenIn() {
-        var screen = document.getElementsByClassName('loading-screen')[0]
+        var doughnutSize
+        var height = window.innerHeight
+        var width = window.innerWidth
 
-        var tl = TweenLite.to(screen, { left: 0, duration: 0.5 })
+        // set doughnut size fill screen (still be circular)
+        var borderSize = Math.sqrt((height / 2) ** 2 + (width / 2) ** 2)
+
+        if (width > height) {
+            doughnutSize = Math.sqrt(width ** 2 + width ** 2)
+        } else {
+            doughnutSize = Math.sqrt(height ** 2 + height ** 2)
+        }
+
+        var doughnut = document.getElementsByClassName('doughnut')[0]
+
+        var tl = TweenLite.to(doughnut, this.screenDuration, {
+            width: doughnutSize,
+            height: doughnutSize,
+            borderTopWidth: doughnutSize / 2,
+            borderRightWidth: doughnutSize / 2,
+            borderBottomWidth: doughnutSize / 2,
+            borderLeftWidth: doughnutSize / 2,
+            onComplete: function () {
+                TweenLite.to(doughnut, 4.0, {
+                    width: doughnutSize,
+                    height: doughnutSize,
+                    borderTopWidth: 0,
+                    borderRightWidth: 0,
+                    borderBottomWidth: 0,
+                    borderLeftWidth: 0,
+                })
+            },
+        })
         await tl
     }
 
     async screenOut() {
-        var screen = document.getElementsByClassName('loading-screen')[0]
-        var tl = TweenLite.to(screen, { left: '-100vw', duration: 0.5 })
-        await tl
-        screen.style.left = '100vw' // reset loading screen
+        // var height = window.innerHeight
+        // var width = window.innerWidth
+        // // size doughnut till its off screen
+        // var doughnutSize = Math.sqrt((height / 2) ** 2 + (width / 2) ** 2)
+        // var doughnut = document.getElementsByClassName('doughnut')[0]
+        // var tl = TweenLite.to(doughnut, this.screenDuration, {
+        //     borderTopWidth: 0,
+        //     borderRightWidth: 0,
+        //     borderBottomWidth: 0,
+        //     borderLeftWidth: 0,
+        // })
+        // await tl
     }
 
     async leave(data) {
@@ -123,7 +162,6 @@ export default class FadeTransition {
 
     async enter(data) {
         // Screen out after material update
-
         this.screenOut()
     }
 }
