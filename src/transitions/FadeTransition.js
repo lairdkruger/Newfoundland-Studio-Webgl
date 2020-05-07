@@ -13,18 +13,19 @@ const charming = require('charming')
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
+        this.screenDuration = 0.3
     }
 
     async screenIn() {
         var screen = document.getElementsByClassName('loading-screen')[0]
 
-        var tl = TweenLite.to(screen, { left: 0, duration: 0.5 })
+        var tl = TweenLite.to(screen, { left: 0, duration: this.screenDuration })
         await tl
     }
 
     async screenOut() {
         var screen = document.getElementsByClassName('loading-screen')[0]
-        var tl = TweenLite.to(screen, { left: '-100vw', duration: 0.5 })
+        var tl = TweenLite.to(screen, { left: '-100vw', duration: this.screenDuration })
         await tl
         screen.style.left = '100vw' // reset loading screen
     }
@@ -123,7 +124,6 @@ export default class FadeTransition {
 
     async enter(data) {
         // Screen out after material update
-
         this.screenOut()
     }
 }
