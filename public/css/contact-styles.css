@@ -7,8 +7,17 @@
         url('../fonts/Novar/Novar.svg') format('svg');
 }
 
+@font-face {
+    font-family: 'Faune';
+    src: url('../fonts/Faune/Faune-TextItalic.eot');
+    src: url('../fonts/Faune/Faune-TextItalic.woff') format('woff'),
+        url('../fonts/Faune/Faune-TextItalic.woff2') format('woff2'),
+        url('../fonts/Faune/Faune-TextItalic.ttf') format('truetype'),
+        url('../fonts/Faune/Faune-TextItalic.svg') format('svg');
+}
+
 body {
-    font-family: 'Novar', serif;
+    font-family: 'Faune', serif;
     font-weight: normal;
     font-style: normal;
     color: #eeeeee;
@@ -77,7 +86,7 @@ canvas {
 
 .ether {
     margin-top: 10vh;
-    align-self: flex-start;
+    align-self: flex-end;
 }
 
 .email {
@@ -88,11 +97,10 @@ canvas {
 .navigation-box {
     position: absolute;
     bottom: 0;
-    right: 0;
     padding-right: 5px;
     padding-bottom: 5px;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: flex-end;
     justify-content: end;
 }
@@ -101,7 +109,10 @@ canvas {
 }
 
 .navigation-text {
+    margin-left: 3px;
+    margin-right: 3px;
     font-size: 1.5rem;
+    line-height: 1rem;
     color: #eeeeee;
     text-align: end;
 }

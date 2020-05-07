@@ -103,7 +103,7 @@ export default class Wolf extends THREE.Group {
         }
 
         if (this.options.scene == 'contact') {
-            landingMaterial(_this)
+            contactMaterial(_this)
         }
 
         function landingMaterial(_this) {
@@ -158,6 +158,8 @@ export default class Wolf extends THREE.Group {
         function aboutMaterial(_this) {
             const loader = new THREE.CubeTextureLoader()
 
+            const skyBoxIndex = _this.options.skyIndex
+
             var reflectionCube = loader.load([
                 'assets/textures/standard/colourBars_square.jpg',
                 'assets/textures/standard/colourBars_square.jpg',
@@ -200,6 +202,55 @@ export default class Wolf extends THREE.Group {
                 envMap: reflectionCube,
                 reflectivity: 1.0,
                 skinning: true,
+            })
+
+            const customShader = [
+                {
+                    from: '#include <common>',
+                    to: `
+                #include <common>
+                /* custom uniforms go here */
+
+                uniform float uTime;
+              `,
+                },
+                {
+                    from: '#include <color_fragment>',
+                    to: `
+                #include <color_fragment>
+                /* set diffuseColor.rgb here */
+
+                {
+                /*
+                  float fluctuate = (sin(uTime) + 1.0) / 2.0;
+                  diffuseColor.rgb = vec3(0.0, 0.0, 0.0);
+                */
+                }
+              `,
+                },
+            ]
+
+            material.onBeforeCompile = function (shader) {
+                customShader.forEach((rep) => {
+                    shader.fragmentShader = shader.fragmentShader.replace(rep.from, rep.to)
+                })
+
+                // custom uniforms
+                shader.uniforms.uTime = { value: 0.0 }
+
+                // make material's shader accessible
+                _this.shaders[_this.wolfMaterialKey] = shader
+
+                // add material to ready dictionary
+                _this.shaderMaterialsReady[_this.wolfMaterialKey] = material
+            }
+        }
+
+        function contactMaterial(_this) {
+            material = new THREE.MeshBasicMaterial({
+                color: 0xf00000,
+                skinning: true,
+                wireframe: true,
             })
 
             const customShader = [
