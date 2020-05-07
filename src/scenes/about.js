@@ -46,17 +46,17 @@ class AboutScene {
         // objects
         this.aboutWolf = new Wolf(webgl, {
             scene: 'about',
-            skyIndex: '13',
+            skyIndex: '15',
         })
 
         this.scene.add(this.aboutWolf)
 
-        this.landingSkybox = new Skybox(webgl, {
-            scene: 'landing',
-            skyIndex: '15',
-        })
+        // this.landingSkybox = new Skybox(webgl, {
+        //     scene: 'landing',
+        //     skyIndex: '15',
+        // })
 
-        this.scene.add(this.landingSkybox)
+        // this.scene.add(this.landingSkybox)
     }
 
     setCamera() {

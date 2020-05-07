@@ -67,7 +67,7 @@ a {
     font-family: 'Blackletter', sans-serif;
     color: white;
     position: absolute;
-    left: 8vw;
+    left: 3vw;
     /* transform: translate(100%) rotate(-90deg);
     transform-origin: center; */
 }
@@ -86,7 +86,7 @@ a {
 .right-navigation-text {
     font-family: 'Blackletter', sans-serif;
     position: absolute;
-    right: 8vw;
+    right: 3vw;
     color: white;
     /* transform: translate(100%) rotate(90deg);
     transform-origin: center; */
@@ -106,7 +106,7 @@ a {
 .bottom-navigation-text {
     font-family: 'Blackletter', sans-serif;
     position: absolute;
-    bottom: 8vw;
+    bottom: 3vw;
     color: white;
     /* transform: translate(100%) rotate(90deg);
     transform-origin: center; */
