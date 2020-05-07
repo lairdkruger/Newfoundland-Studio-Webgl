@@ -31,6 +31,8 @@ h1 span {
 
 .loading-container {
     position: fixed;
+    margin: 0;
+    padding: 0;
     top: 0;
     left: 0;
     width: 100%;
@@ -41,17 +43,11 @@ h1 span {
 }
 
 .loading-screen {
+    display: none;
     position: relative;
-    padding-left: 0;
-    padding-right: 0;
-    padding-top: 0;
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100%;
-    background-color: black;
-    left: 100vw;
-}
-
-.black {
-    background-color: black;
-    left: 100vw;
+    left: 0vw;
 }
