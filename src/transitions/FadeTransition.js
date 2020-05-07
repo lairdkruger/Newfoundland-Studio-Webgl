@@ -13,21 +13,21 @@ const charming = require('charming')
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
-        this.screenDuration = 0.3
+        this.screenDuration = 1.0
     }
 
     async screenIn() {
-        var screen = document.getElementsByClassName('loading-screen')[0]
-
-        var tl = TweenLite.to(screen, { left: 0, duration: this.screenDuration })
-        await tl
+        // var screen = document.getElementsByClassName('loading-screen')[0]
+        // var tl = TweenLite.to(screen, { left: 0, duration: this.screenDuration })
+        // await tl
     }
 
     async screenOut() {
         var screen = document.getElementsByClassName('loading-screen')[0]
-        var tl = TweenLite.to(screen, { left: '-100vw', duration: this.screenDuration })
+        var tl = TweenLite.to(screen, { opacity: 0, duration: this.screenDuration })
         await tl
-        screen.style.left = '100vw' // reset loading screen
+        screen.style.display = 'none' // reset loading screen
+        screen.style.opacity = 1 // reset loading screen
     }
 
     async leave(data) {
@@ -115,8 +115,15 @@ export default class FadeTransition {
             webgl.camera.inTransition = false
         }
 
-        // Screen in before material update
-        await this.screenIn()
+        function renderToImage() {
+            var imageDataURL = webgl.renderer.domElement.toDataURL('image/png')
+            var loadingScreen = document.getElementsByClassName('loading-screen')[0]
+            loadingScreen.src = imageDataURL
+            loadingScreen.style.display = 'block'
+        }
+
+        // Render old scene in new camera position
+        renderToImage()
 
         // Updates new scene (materials change here)
         await setNewScene()
@@ -124,6 +131,8 @@ export default class FadeTransition {
 
     async enter(data) {
         // Screen out after material update
+
+        // Fade out the render of the old scene
         this.screenOut()
     }
 }
