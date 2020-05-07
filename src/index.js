@@ -34,7 +34,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     var fadeTransition = new FadeTransition()
 
     barba.init({
-        // debug: true,
+        debug: true,
         preventRunning: true, // prevent double clicking
         transitions: [
             // setting transitions between pages
