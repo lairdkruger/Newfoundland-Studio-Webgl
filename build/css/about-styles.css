@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Space Grotesk';
+    src: url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.eot');
+    src: url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.woff') format('woff'),
+        url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.woff2') format('woff2'),
+        url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.ttf') format('truetype'),
+        url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.svg') format('svg');
+}
+
 body {
     font-weight: normal;
     font-style: normal;
@@ -12,109 +21,95 @@ canvas {
 }
 
 .about-section {
-    font-family: 'VT323', monospace;
+    font-family: 'Bebas Neue', cursive;
+    /* font-size: 2rem; */
+    width: 100%;
     position: relative;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* variables */
-    --para-padding: 25px;
-    --background-colour: #00000f;
+    justify-content: start;
+    align-items: flex-start;
+    /* Variables */
+    --para-font-size: 1.3rem;
 }
 
-.about-heading-box {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    padding-right: 50px;
-    padding-bottom: 25px;
+.about-description-box {
+    position: relative;
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
+    width: 50%;
+    padding-right: 6px;
+    align-self: flex-end;
+    align-content: flex-start;
+    justify-content: start;
 }
 
-.about-heading {
-    font-size: 10rem;
-    line-height: 6rem;
-    margin: 0px;
-    padding: 0px;
-    color: #ff00ff;
-    /* background-color: rgba(0, 0, 0, 0.85); */
+@media only screen and (max-width: 600px) {
+    .about-description-box {
+        width: 66%;
+    }
+}
+
+.about-header-box {
+    padding: 0;
+    width: 100%;
+}
+
+.about-header {
+    font-family: 'Bebas Neue', cursive;
+    padding: 0;
+    font-size: 6rem;
+    line-height: 5rem;
+    text-align: justify;
+
+    background: linear-gradient(to bottom left, #e2d4d8, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-intro-box {
+    font-size: var(--para-font-size);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.about-intro-left {
+    text-align: left;
+    height: 100%;
+}
+
+.about-intro-middle {
+    text-align: center;
+    height: 100%;
+}
+
+.about-intro-right {
+    text-align: right;
+    height: 100%;
 }
 
 .about-para-box {
-    position: relative;
-    align-self: flex-end;
-    right: 0;
-    width: 50%;
-    padding-right: 50px;
+    width: 100%;
+}
+
+.about-para-main {
+    font-size: var(--para-font-size);
+    text-align: justify;
+}
+
+.about-nav-box {
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: flex-end;
-}
-
-.about-para-1 {
-    font-size: 1.5rem;
-    padding: var(--para-padding);
-    text-align: end;
-    color: #00f9ff;
-    background-color: var(--background-colour);
-}
-
-.about-para {
-    font-size: 1.5rem;
-    padding: var(--para-padding);
-    text-align: end;
-    color: #ff00ff;
-    background-color: var(--background-colour);
-}
-
-.about-top-link-box {
-    position: fixed;
-    align-self: start;
-    padding-top: 50px;
-    padding-left: 50px;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    background-color: var(--background-colour);
-}
-
-.about-top-link-text {
-    font-size: 1.5rem;
-    color: #ff00ff;
-}
-
-.about-bottom-left-link-box {
-    position: fixed;
-    align-self: start;
-    padding-bottom: 50px;
-    padding-left: 50px;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-    background-color: var(--background-colour);
-}
-
-.about-bottom-left-link-text {
-    font-size: 1.5rem;
-    color: #ff00ff;
-}
-
-.about-bottom-link-box {
-    position: relative;
+    width: 100%;
     align-self: flex-end;
-    padding-bottom: 50px;
-    padding-right: 50px;
-    bottom: 0;
-    right: 0;
-    background-color: var(--background-colour);
+    align-content: center;
+    justify-content: space-between;
+    margin-bottom: 25px;
 }
 
-.about-bottom-link-text {
-    font-size: 1.5rem;
-    color: #ff00ff;
+.about-nav {
+    font-size: var(--para-font-size);
+    color: #eeeeee;
 }

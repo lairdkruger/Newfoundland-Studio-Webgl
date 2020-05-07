@@ -32,6 +32,7 @@
     right: 0;
     padding-top: 50px;
     padding-right: 25px;
+    z-index: 5;
 }
 
 .work-nav {
@@ -87,5 +88,10 @@
 }
 
 .work-list-item {
+    margin-bottom: 2px;
     color: #eeeeee;
+}
+
+.soon {
+    pointer-events: none;
 }
