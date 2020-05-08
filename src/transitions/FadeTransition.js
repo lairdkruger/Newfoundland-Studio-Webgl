@@ -13,18 +13,18 @@ const charming = require('charming')
 export default class FadeTransition {
     constructor() {
         this.webglDuration = 2000
-        this.screenDuration = 1.0
+        this.screenDuration = 0.5
     }
 
-    async screenIn() {
-        // var screen = document.getElementsByClassName('loading-screen')[0]
-        // var tl = TweenLite.to(screen, { left: 0, duration: this.screenDuration })
-        // await tl
-    }
+    async screenIn() {}
 
     async screenOut() {
         var screen = document.getElementsByClassName('loading-screen')[0]
-        var tl = TweenLite.to(screen, { opacity: 0, duration: this.screenDuration })
+        var tl = TweenLite.to(screen, {
+            opacity: 0,
+            duration: this.screenDuration,
+            ease: 'Linear.easeNone',
+        })
         await tl
         screen.style.display = 'none' // reset loading screen
         screen.style.opacity = 1 // reset loading screen
@@ -103,11 +103,17 @@ export default class FadeTransition {
 
         // Webgl animation
         // get custom data set in html of trigger element
-        var sceneKey = data.trigger.dataset.scene
+        var sceneKey = null // default
+        console.log(webgl)
+        if (data.trigger == 'back') {
+            // browser back button was clicked
+            sceneKey = webgl.previousScenes.pop()
+        } else {
+            // link was an anchor (not the back button)
+            sceneKey = data.trigger.dataset.scene
+        }
 
-        webgl.currentSceneParams.sceneKey = sceneKey
-
-        await sceneTransition(webgl, webgl.currentSceneParams.sceneKey, this.webglDuration)
+        await sceneTransition(webgl, sceneKey, this.webglDuration)
 
         async function setNewScene() {
             webgl.currentScene = webgl.scenes[sceneKey]
@@ -122,11 +128,11 @@ export default class FadeTransition {
             loadingScreen.style.display = 'block'
         }
 
-        // Render old scene in new camera position
-        renderToImage()
-
         // Updates new scene (materials change here)
         await setNewScene()
+
+        // Render old scene in new camera position
+        renderToImage()
     }
 
     async enter(data) {

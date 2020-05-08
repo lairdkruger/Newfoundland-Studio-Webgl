@@ -23,6 +23,15 @@
         <link rel="stylesheet" href="css/about-styles.css" />
         <link rel="stylesheet" href="css/work-styles.css" />
         <link rel="stylesheet" href="css/contact-styles.css" />
+
+        <script>
+            // take user back to homepage if they refresh
+            window.onload = () => {
+                if (!window.WEBGL) {
+                    window.location.href = '../'
+                }
+            }
+        </script>
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
