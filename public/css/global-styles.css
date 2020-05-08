@@ -1,3 +1,7 @@
+:root {
+    --innerRadius: 0px;
+}
+
 html {
     font-size: 25px;
     -webkit-font-smoothing: antialiased;
@@ -44,9 +48,34 @@ h1 span {
 }
 
 .doughnut {
+    display: none;
     box-sizing: border-box;
-    border: 0 solid #f00;
+    border: 0 solid #000000;
     border-radius: 50%;
     height: 0;
     width: 0;
+    background-color: transparent;
+}
+
+.doughnut-out {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.doughnut-out:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    width: var(--innerRadius);
+    height: var(--innerRadius);
+    border: 1000px solid #000000;
 }
