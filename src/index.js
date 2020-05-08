@@ -30,16 +30,30 @@ webgl.canvas.style.visibility = 'hidden'
 assets.load({ renderer: webgl.renderer }).then(() => {
     // show canvas
     webgl.canvas.style.visibility = ''
+    window.WEBGL = true
+
+    // init default for browser back button
+    webgl.previousSceneKeyTemp = 'landingScene'
 
     var fadeTransition = new FadeTransition()
 
     barba.init({
-        // debug: true,
+        debug: true,
         preventRunning: true, // prevent double clicking
         transitions: [
             // setting transitions between pages
             {
                 name: 'default-transition',
+                async beforeLeave(data) {
+                    if (data.trigger == 'forward') {
+                        // just take users home
+                        window.location.href = '../'
+                    } else if (data.trigger != 'back') {
+                        webgl.previousSceneKeyTemp = webgl.currentSceneParams.sceneKey
+                        webgl.previousScenes.push(webgl.previousSceneKeyTemp)
+                    }
+                },
+
                 async leave(data) {
                     await fadeTransition.leave(data)
                 },
@@ -47,6 +61,8 @@ assets.load({ renderer: webgl.renderer }).then(() => {
                 async enter(data) {
                     await fadeTransition.enter(data)
                 },
+
+                async afterEnter(data) {},
             },
         ],
         views: [

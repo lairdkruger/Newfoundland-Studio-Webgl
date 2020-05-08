@@ -72,6 +72,10 @@ export default class WebGLApp {
         // used for updating composer
         this.oldScene = this.currentScene
 
+        // used for handling browser back button events
+        this.previousSceneKeyTemp = ''
+        this.previousScenes = []
+
         // mouse
         this.mouse = new THREE.Vector3()
         this.mouse2D = new THREE.Vector2()

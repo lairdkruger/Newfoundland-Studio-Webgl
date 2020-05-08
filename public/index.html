@@ -23,6 +23,15 @@
         <link rel="stylesheet" href="css/about-styles.css" />
         <link rel="stylesheet" href="css/work-styles.css" />
         <link rel="stylesheet" href="css/contact-styles.css" />
+
+        <script>
+            // take user back to homepage if they refresh
+            window.onload = () => {
+                if (!window.WEBGL) {
+                    window.location.href = '../'
+                }
+            }
+        </script>
     </head>
     <body data-barba="wrapper">
         <canvas id="webgl-canvas"></canvas>
@@ -41,17 +50,17 @@
                 <div class="home-navigation">
                     <div class="home-navigation-wrapper">
                         <div class="left-navigation">
-                            <a class="left-navigation-text" data-scene="workScene" href="work.html"
-                                >work</a
+                            <a
+                                class="left-navigation-text"
+                                data-scene="aboutScene"
+                                href="about.html"
+                                >about</a
                             >
                         </div>
 
                         <div class="right-navigation">
-                            <a
-                                class="right-navigation-text"
-                                data-scene="aboutScene"
-                                href="about.html"
-                                >about</a
+                            <a class="right-navigation-text" data-scene="workScene" href="work.html"
+                                >work</a
                             >
                         </div>
                         <div class="bottom-navigation">
