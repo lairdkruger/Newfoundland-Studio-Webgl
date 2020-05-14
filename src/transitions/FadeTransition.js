@@ -33,72 +33,9 @@ export default class FadeTransition {
     async leave(data) {
         var _this = this
 
-        // H1 animate out
-        var h1 = data.current.container.querySelectorAll('h1')
-        if (h1) {
-            for (var i = 0; i < h1.length; i++) {
-                var el = h1[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(
-                    spans,
-                    0.4,
-                    { opacity: 1, y: 0 },
-                    { opacity: 0, y: 25 },
-                    0.04
-                )
-            }
-        }
-
-        // anchor links animate out
-        var a = data.current.container.querySelectorAll('a')
-        if (a) {
-            for (var i = 0; i < a.length; i++) {
-                var el = a[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(spans, 0.5, { opacity: 1 }, { opacity: 0 }, 0.02)
-            }
-        }
-
-        // H3 animate out
-        var h3 = data.current.container.querySelectorAll('h3')
-        if (h3) {
-            for (var i = 0; i < h3.length; i++) {
-                var el = h3[i]
-                charming(el)
-                var spans = [...el.querySelectorAll('span')]
-                new TimelineMax({}).staggerFromTo(
-                    spans,
-                    0.4,
-                    { opacity: 1, y: 0 },
-                    { opacity: 0, y: 25 },
-                    0.01
-                )
-            }
-        }
-
-        // H2 animate out
-        var h2 = data.current.container.querySelectorAll('h2')
-        if (h2) {
-            for (var i = 0; i < h2.length; i++) {
-                var el = h2[i]
-                TweenMax.to(el, 0.5, { opacity: 0 })
-            }
-        }
-
-        // p animate out
-        var p = data.current.container.querySelectorAll('p')
-        if (p) {
-            for (var i = 0; i < p.length; i++) {
-                var el = p[i]
-                TweenMax.to(el, 0.5, { opacity: 0 })
-            }
-        }
-
         var everything = data.current.container
         if (everything) {
-            TweenMax.to(everything, 0.8, { delay: 0.5, opacity: 0 })
+            TweenMax.to(everything, 0.8, { opacity: 0 })
         }
 
         // Webgl animation
