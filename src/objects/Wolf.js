@@ -193,15 +193,12 @@ export default class Wolf extends THREE.Group {
                 'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
             ])
 
-            // material = new THREE.MeshNormalMaterial({
-            //     skinning: true,
-            //     wireframe: false,
-            // })
-
             material = new THREE.MeshBasicMaterial({
                 envMap: reflectionCube,
-                reflectivity: 1.0,
+                color: 0xeeeeee,
+                reflectivity: 0.04,
                 skinning: true,
+                wireframe: false,
             })
 
             const customShader = [
@@ -401,7 +398,7 @@ export default class Wolf extends THREE.Group {
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
             material = new THREE.MeshBasicMaterial({
-                color: 0x000000,
+                color: 0xffffff,
                 envMap: reflectionCube,
                 reflectivity: 0.66,
             })

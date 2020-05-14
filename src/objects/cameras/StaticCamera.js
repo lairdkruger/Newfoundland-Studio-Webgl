@@ -10,7 +10,7 @@ export default class StaticCameraBehaviour {
 
         // easing and params
         this.easeTarget = new THREE.Vector3()
-        this.movementIntensity = 0.05
+        this.movementIntensity = 0.1
         this.ease = 0.05
 
         this.init()
