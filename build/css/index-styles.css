@@ -7,8 +7,17 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'Basier Mono';
+    src: url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.eot');
+    src: url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.woff2') format('woff2'),
+        url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .home-section {
-    font-family: 'Blackletter', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-weight: normal;
     font-style: normal;
     height: 100vh;
@@ -17,6 +26,7 @@
 
 .home-title-box {
     position: relative;
+    margin-top: 25px;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -26,8 +36,10 @@
     margin: 0;
     padding: 0;
     top: 0;
-    font-family: 'Blackletter', serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 10vw;
+    line-height: 8vw;
+    text-align: center;
     color: #eeeeee;
 }
 
@@ -51,6 +63,10 @@ a {
     height: 100vh;
     width: 100vh;
     max-width: 100vw;
+    font-family: 'Basier Mono', serif;
+    color: #eeeeee;
+    font-size: 0.9rem;
+    line-height: 1rem;
 }
 
 .left-navigation {
@@ -64,10 +80,9 @@ a {
 }
 
 .left-navigation-text {
-    font-family: 'Blackletter', sans-serif;
-    color: white;
     position: absolute;
     left: 3vw;
+    color: #eeeeee;
     /* transform: translate(100%) rotate(-90deg);
     transform-origin: center; */
 }
@@ -84,10 +99,9 @@ a {
 }
 
 .right-navigation-text {
-    font-family: 'Blackletter', sans-serif;
     position: absolute;
     right: 3vw;
-    color: white;
+    color: #eeeeee;
     /* transform: translate(100%) rotate(90deg);
     transform-origin: center; */
 }
@@ -104,10 +118,9 @@ a {
 }
 
 .bottom-navigation-text {
-    font-family: 'Blackletter', sans-serif;
     position: absolute;
     bottom: 3vw;
-    color: white;
+    color: #eeeeee;
     /* transform: translate(100%) rotate(90deg);
     transform-origin: center; */
 }
