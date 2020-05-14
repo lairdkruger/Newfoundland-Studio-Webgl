@@ -124,3 +124,27 @@ a {
     /* transform: translate(100%) rotate(90deg);
     transform-origin: center; */
 }
+
+@media only screen and (max-width: 600px) {
+    .home-title {
+        margin-top: 7.5vw;
+        font-size: 15vw;
+        line-height: 13vw;
+    }
+
+    .home-navigation-wrapper {
+        font-size: 1.1rem;
+        line-height: 1.2rem;
+    }
+    .left-navigation-text {
+        left: 15vw;
+    }
+
+    .right-navigation-text {
+        right: 15vw;
+    }
+
+    .bottom-navigation-text {
+        bottom: 15vw;
+    }
+}
