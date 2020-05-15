@@ -48,7 +48,6 @@ class LandingScene {
         // objects
         this.landingWolf = new Wolf(webgl, {
             scene: 'landing',
-            skyIndex: '3',
             noSun: true,
         })
 
@@ -56,7 +55,6 @@ class LandingScene {
 
         this.landingSkybox = new Skybox(webgl, {
             scene: 'landing',
-            skyIndex: '3',
         })
 
         this.scene.add(this.landingSkybox)
