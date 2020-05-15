@@ -36,6 +36,7 @@
 }
 
 .work-nav {
+    position: relative;
     color: #eeeeee;
     font-size: 1rem;
 }
@@ -137,6 +138,24 @@
     top: 0;
     align-content: center;
     justify-content: center;
+}
+
+.hover-work:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 3px;
+    bottom: 33%;
+    left: 0;
+    background-color: #eeeeee;
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s;
+}
+
+.hover-work:hover:after {
+    transform-origin: bottom left;
+    transform: scaleX(1);
 }
 
 @media only screen and (max-width: 600px) {

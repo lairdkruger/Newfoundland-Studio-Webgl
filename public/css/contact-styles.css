@@ -90,8 +90,8 @@ canvas {
 }
 
 .email {
+    position: relative;
     margin-top: 10vh;
-    text-decoration: underline;
 }
 
 .navigation-box {
@@ -105,14 +105,29 @@ canvas {
     justify-content: end;
 }
 
-.navigation {
-}
-
 .navigation-text {
-    margin-left: 3px;
-    margin-right: 3px;
+    position: relative;
+    margin-left: 15px;
+    margin-right: 15px;
     font-size: 1.5rem;
-    line-height: 1rem;
+    line-height: 1.5rem;
     color: #eeeeee;
     text-align: end;
+}
+
+.hover-contact:after {
+    content: '';
+    position: absolute;
+    top: 15%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 3px;
+    transform: scaleX(0);
+    background-color: #eeeeee;
+    transition: transform 0.3s;
+}
+
+.hover-contact:hover:after {
+    transform: scaleX(1);
 }

@@ -96,6 +96,7 @@ canvas {
 }
 
 .about-para-main {
+    color: #eeeeee;
     font-size: var(--para-font-size);
     text-align: justify;
 }
@@ -110,6 +111,25 @@ canvas {
 }
 
 .about-nav {
+    position: relative;
     font-size: var(--para-font-size);
     color: #eeeeee;
+}
+
+.hover-about:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 25%;
+    transform-origin: bottom;
+    transform: scaleY(0);
+    background-color: #eeeeee;
+    transition: transform 0.3s;
+}
+
+.hover-about:hover:after {
+    transform: scaleY(1);
 }
