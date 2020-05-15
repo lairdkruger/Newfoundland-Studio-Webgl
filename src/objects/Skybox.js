@@ -27,16 +27,34 @@ export default class Skybox extends THREE.Group {
 
         const loader = new THREE.CubeTextureLoader()
 
-        const skyBoxIndex = this.options.skyIndex
-
-        this.skyBoxTexture = loader.load([
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
-            'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
-        ])
+        if (this.options.scene == 'landing') {
+            this.skyBoxTexture = loader.load([
+                'assets/textures/skyboxes/skybox1/right.jpg',
+                'assets/textures/skyboxes/skybox1/left.jpg',
+                'assets/textures/skyboxes/skybox1/top.jpg',
+                'assets/textures/skyboxes/skybox1/bottom.jpg',
+                'assets/textures/skyboxes/skybox1/front.jpg',
+                'assets/textures/skyboxes/skybox1/back.jpg',
+            ])
+        } else if (this.options.scene == 'work') {
+            this.skyBoxTexture = loader.load([
+                'assets/textures/standard/shimmer.jpg',
+                'assets/textures/standard/shimmer.jpg',
+                'assets/textures/standard/shimmer.jpg',
+                'assets/textures/standard/shimmer.jpg',
+                'assets/textures/standard/shimmer.jpg',
+                'assets/textures/standard/shimmer.jpg',
+            ])
+        } else if (this.options.scene == 'contact') {
+            this.skyBoxTexture = loader.load([
+                'assets/textures/skyboxes/skybox2/right.jpg',
+                'assets/textures/skyboxes/skybox2/left.jpg',
+                'assets/textures/skyboxes/skybox2/top.jpg',
+                'assets/textures/skyboxes/skybox2/bottom.jpg',
+                'assets/textures/skyboxes/skybox2/front.jpg',
+                'assets/textures/skyboxes/skybox2/back.jpg',
+            ])
+        }
 
         //const geometry = new THREE.BoxGeometry(2000, 2000, 2000)
         const geometry = new THREE.SphereGeometry(200, 1, 1)

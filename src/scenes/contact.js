@@ -44,21 +44,15 @@ class ContactScene {
         this.setCamera()
         addBackLighting(this.scene)
 
-        // 7 12 16
-        this.sky = '21'
-
         // objects
         this.contactWolf = new Wolf(webgl, {
             scene: 'contact',
-            skyIndex: this.sky,
-            noSun: false,
         })
 
         this.scene.add(this.contactWolf)
 
         this.contactSkybox = new Skybox(webgl, {
             scene: 'contact',
-            skyIndex: '22',
         })
 
         this.scene.add(this.contactSkybox)

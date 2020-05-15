@@ -19,7 +19,6 @@ import { addGrainPassLite } from '../objects/post/GrainPassLite'
 
 // objects
 import Wolf from '../objects/Wolf'
-import Skybox from '../objects/Skybox'
 
 // lighting etc
 import { addTopLighting } from '../objects/lighting/TopLighting'
@@ -46,7 +45,6 @@ class AboutScene {
         // objects
         this.aboutWolf = new Wolf(webgl, {
             scene: 'about',
-            skyIndex: '15',
         })
 
         this.scene.add(this.aboutWolf)

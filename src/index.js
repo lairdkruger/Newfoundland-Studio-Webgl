@@ -1,8 +1,6 @@
 /*
 Handles all site behaviour
 */
-
-import { addScreenshotButton } from './lib/SaveScreenshot'
 import assets from './lib/AssetManager'
 
 // create a singleton instance of webgl (called 'webgl')
@@ -38,7 +36,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     var fadeTransition = new FadeTransition()
 
     barba.init({
-        debug: true,
+        debug: false,
         preventRunning: true, // prevent double clicking
         transitions: [
             // setting transitions between pages
@@ -103,9 +101,7 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     webgl.currentSceneParams = webgl.scenesParams['landingScene']
     landingScene.postprocessing()
 
-    var staticCameraBehaviour = new StaticCameraBehaviour(webgl)
-
-    console.log(webgl)
+    const staticCameraBehaviour = new StaticCameraBehaviour(webgl)
 
     // start animation loop
     webgl.start()
