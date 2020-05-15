@@ -45,7 +45,7 @@ class ContactScene {
         addBackLighting(this.scene)
 
         // 7 12 16
-        this.sky = '7'
+        this.sky = '21'
 
         // objects
         this.contactWolf = new Wolf(webgl, {
@@ -58,7 +58,7 @@ class ContactScene {
 
         this.contactSkybox = new Skybox(webgl, {
             scene: 'contact',
-            skyIndex: this.sky,
+            skyIndex: '22',
         })
 
         this.scene.add(this.contactSkybox)
