@@ -1,5 +1,4 @@
 // GSAP Library
-import { TimelineMax } from 'gsap'
 import { TweenMax } from 'gsap'
 import { TweenLite } from 'gsap'
 
@@ -41,7 +40,6 @@ export default class FadeTransition {
         // Webgl animation
         // get custom data set in html of trigger element
         var sceneKey = null // default
-        console.log(webgl)
         if (data.trigger == 'back') {
             // browser back button was clicked
             sceneKey = webgl.previousScenes.pop()
