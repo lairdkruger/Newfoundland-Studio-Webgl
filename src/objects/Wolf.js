@@ -244,10 +244,25 @@ export default class Wolf extends THREE.Group {
         }
 
         function contactMaterial(_this) {
+            var loader = new THREE.CubeTextureLoader()
+
+            const skyBoxIndex = _this.options.skyIndex
+
+            var reflectionCube = loader.load([
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/right.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/left.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/top.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/bottom.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/front.png',
+                'assets/textures/skyboxes/starscape' + skyBoxIndex + '/back.png',
+            ])
+
             material = new THREE.MeshBasicMaterial({
-                color: 0xf00000,
+                envMap: reflectionCube,
+                color: 0xeeeeee,
+                reflectivity: 0.4,
                 skinning: true,
-                wireframe: true,
+                wireframe: false,
             })
 
             const customShader = [

@@ -50,13 +50,6 @@ class AboutScene {
         })
 
         this.scene.add(this.aboutWolf)
-
-        // this.landingSkybox = new Skybox(webgl, {
-        //     scene: 'landing',
-        //     skyIndex: '15',
-        // })
-
-        // this.scene.add(this.landingSkybox)
     }
 
     setCamera() {
