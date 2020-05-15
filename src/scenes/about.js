@@ -60,16 +60,31 @@ class AboutScene {
             webgl.orbitControls.distance = 0.5
             webgl.orbitControls.target = [0.2, 0, 0]
         } else {
-            this.cameraPosition = {
-                x: 0.4,
-                y: 0.0,
-                z: 0.4,
-            }
+            if (window.innerWidth > 490) {
+                this.cameraPosition = {
+                    x: 0.4,
+                    y: 0.0,
+                    z: 0.4,
+                }
 
-            this.cameraTarget = {
-                x: 0.0,
-                y: 0.0,
-                z: -0.4,
+                this.cameraTarget = {
+                    x: 0.0,
+                    y: 0.0,
+                    z: -0.4,
+                }
+            } else {
+                // mobile
+                this.cameraPosition = {
+                    x: 0.6,
+                    y: 0.0,
+                    z: 0.8,
+                }
+
+                this.cameraTarget = {
+                    x: 0.0,
+                    y: 0.0,
+                    z: -0.3,
+                }
             }
         }
     }

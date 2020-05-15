@@ -68,16 +68,31 @@ class ContactScene {
             webgl.orbitControls.distance = 1.240000000000002
             webgl.orbitControls.target = [0, -0.2, 0]
         } else {
-            this.cameraPosition = {
-                x: 0.2,
-                y: -0.2,
-                z: -0.2,
-            }
+            if (window.innerWidth > 480) {
+                this.cameraPosition = {
+                    x: 0.2,
+                    y: -0.2,
+                    z: -0.2,
+                }
 
-            this.cameraTarget = {
-                x: 0.0,
-                y: -0.5,
-                z: 0.05,
+                this.cameraTarget = {
+                    x: 0.0,
+                    y: -0.5,
+                    z: 0.05,
+                }
+            } else {
+                // mobile
+                this.cameraPosition = {
+                    x: 0.4,
+                    y: -0.4,
+                    z: -0.4,
+                }
+
+                this.cameraTarget = {
+                    x: 0.0,
+                    y: -0.6,
+                    z: 0.05,
+                }
             }
         }
     }

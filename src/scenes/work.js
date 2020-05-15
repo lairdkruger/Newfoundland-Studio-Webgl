@@ -67,16 +67,31 @@ class WorkScene {
             webgl.orbitControls.distance = 0.5
             webgl.orbitControls.target = [0.2, 0, 0]
         } else {
-            this.cameraPosition = {
-                x: -0.2,
-                y: 0.2,
-                z: -0.2,
-            }
+            if (window.innerWidth > 480) {
+                this.cameraPosition = {
+                    x: -0.2,
+                    y: 0.2,
+                    z: -0.2,
+                }
 
-            this.cameraTarget = {
-                x: 0.2,
-                y: 0.02,
-                z: -0.05,
+                this.cameraTarget = {
+                    x: 0.2,
+                    y: 0.02,
+                    z: -0.05,
+                }
+            } else {
+                // mobile
+                this.cameraPosition = {
+                    x: -0.65,
+                    y: 0.3,
+                    z: -0.4,
+                }
+
+                this.cameraTarget = {
+                    x: 0.2,
+                    y: 0.02,
+                    z: -0.05,
+                }
             }
         }
     }
