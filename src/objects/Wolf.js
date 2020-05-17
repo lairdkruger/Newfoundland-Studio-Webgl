@@ -251,10 +251,15 @@ export default class Wolf extends THREE.Group {
                 'assets/textures/standard/dogs.jpg',
             ])
 
-            material = new THREE.MeshBasicMaterial({
-                envMap: reflectionCube,
-                color: 0xeeeeee,
-                reflectivity: 0.4,
+            // material = new THREE.MeshBasicMaterial({
+            //     envMap: reflectionCube,
+            //     color: 0xeeeeee,
+            //     reflectivity: 0.4,
+            //     skinning: true,
+            //     wireframe: false,
+            // })
+
+            material = new THREE.MeshNormalMaterial({
                 skinning: true,
                 wireframe: false,
             })
@@ -413,9 +418,14 @@ export default class Wolf extends THREE.Group {
 
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
-            material = new THREE.MeshBasicMaterial({
-                envMap: reflectionCube,
-                reflectivity: 1.0,
+            // material = new THREE.MeshBasicMaterial({
+            //     envMap: reflectionCube,
+            //     reflectivity: 1.0,
+            // })
+
+            material = new THREE.MeshNormalMaterial({
+                skinning: true,
+                wireframe: false,
             })
         }
 
