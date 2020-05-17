@@ -61,7 +61,7 @@ a {
 .home-navigation-wrapper {
     position: relative;
     height: 100vh;
-    width: 100vh;
+    width: 125vh;
     max-width: 100vw;
     font-family: 'Basier Mono', serif;
     color: #eeeeee;
@@ -75,16 +75,8 @@ a {
     height: 100%;
     width: 50%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-}
-
-.left-navigation-text {
-    position: absolute;
-    left: 3vw;
-    color: #eeeeee;
-    /* transform: translate(100%) rotate(-90deg);
-    transform-origin: center; */
 }
 
 .right-navigation {
@@ -93,23 +85,14 @@ a {
     height: 100%;
     width: 50%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-}
-
-.right-navigation-text {
-    position: absolute;
-    right: 3vw;
-    color: #eeeeee;
-    /* transform: translate(100%) rotate(90deg);
-    transform-origin: center; */
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .bottom-navigation {
     position: absolute;
     bottom: 0;
-    height: auto;
+    padding-bottom: 15px;
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -117,12 +100,58 @@ a {
     align-items: center;
 }
 
-.bottom-navigation-text {
-    position: absolute;
-    bottom: 3vw;
+.nav-link-box {
+    margin-left: 75px;
+    margin-right: 75px;
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.nav-link {
+    position: relative;
     color: #eeeeee;
-    /* transform: translate(100%) rotate(90deg);
-    transform-origin: center; */
+    text-transform: uppercase;
+}
+
+.nav-animate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    transition: transform 0.15s ease-out;
+}
+
+.shadow1 {
+    opacity: 0.8;
+}
+
+.shadow2 {
+    opacity: 0.5;
+}
+
+.shadow3 {
+    opacity: 0.4;
+}
+.shadow4 {
+    opacity: 0.3;
+}
+
+.nav-link-box:hover {
+}
+
+.nav-link-box:hover .shadow1 {
+    transform: translateY(4px);
+}
+
+.nav-link-box:hover .shadow2 {
+    transform: translateY(8px);
+}
+
+.nav-link-box:hover .shadow3 {
+    transform: translateY(12px);
+}
+
+.nav-link-box:hover .shadow4 {
+    transform: translateY(16px);
 }
 
 @media only screen and (max-width: 600px) {

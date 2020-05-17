@@ -251,10 +251,15 @@ export default class Wolf extends THREE.Group {
                 'assets/textures/standard/dogs.jpg',
             ])
 
-            material = new THREE.MeshBasicMaterial({
-                envMap: reflectionCube,
-                color: 0xeeeeee,
-                reflectivity: 0.4,
+            // material = new THREE.MeshBasicMaterial({
+            //     envMap: reflectionCube,
+            //     color: 0xeeeeee,
+            //     reflectivity: 0.4,
+            //     skinning: true,
+            //     wireframe: false,
+            // })
+
+            material = new THREE.MeshNormalMaterial({
                 skinning: true,
                 wireframe: false,
             })
@@ -349,14 +354,26 @@ export default class Wolf extends THREE.Group {
         function aboutMaterial(_this) {
             const loader = new THREE.CubeTextureLoader()
 
-            var reflectionCube = loader.load([
-                'assets/textures/standard/static.jpg',
-                'assets/textures/standard/static.jpg',
-                'assets/textures/standard/static.jpg',
-                'assets/textures/standard/static.jpg',
-                'assets/textures/standard/static.jpg',
-                'assets/textures/standard/static.jpg',
-            ])
+            if (window.innerWidth > 480) {
+                var reflectionCube = loader.load([
+                    'assets/textures/standard/static.jpg',
+                    'assets/textures/standard/static.jpg',
+                    'assets/textures/standard/static.jpg',
+                    'assets/textures/standard/static.jpg',
+                    'assets/textures/standard/static.jpg',
+                    'assets/textures/standard/static.jpg',
+                ])
+            } else {
+                // mobile
+                var reflectionCube = loader.load([
+                    'assets/textures/standard/static_dark.jpg',
+                    'assets/textures/standard/static_dark.jpg',
+                    'assets/textures/standard/static_dark.jpg',
+                    'assets/textures/standard/static_dark.jpg',
+                    'assets/textures/standard/static_dark.jpg',
+                    'assets/textures/standard/static_dark.jpg',
+                ])
+            }
 
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
@@ -401,9 +418,14 @@ export default class Wolf extends THREE.Group {
 
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
-            material = new THREE.MeshBasicMaterial({
-                envMap: reflectionCube,
-                reflectivity: 1.0,
+            // material = new THREE.MeshBasicMaterial({
+            //     envMap: reflectionCube,
+            //     reflectivity: 1.0,
+            // })
+
+            material = new THREE.MeshNormalMaterial({
+                skinning: true,
+                wireframe: false,
             })
         }
 
