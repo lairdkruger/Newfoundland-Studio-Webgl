@@ -51,11 +51,11 @@ class ContactScene {
 
         this.scene.add(this.contactWolf)
 
-        this.contactSkybox = new Skybox(webgl, {
-            scene: 'contact',
-        })
+        // this.contactSkybox = new Skybox(webgl, {
+        //     scene: 'contact',
+        // })
 
-        this.scene.add(this.contactSkybox)
+        // this.scene.add(this.contactSkybox)
     }
 
     setCamera() {

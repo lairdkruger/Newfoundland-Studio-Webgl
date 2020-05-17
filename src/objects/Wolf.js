@@ -261,7 +261,7 @@ export default class Wolf extends THREE.Group {
 
             material = new THREE.MeshNormalMaterial({
                 skinning: true,
-                wireframe: false,
+                wireframe: true,
             })
 
             const customShader = [
