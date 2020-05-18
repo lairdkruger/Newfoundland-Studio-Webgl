@@ -251,59 +251,13 @@ export default class Wolf extends THREE.Group {
                 'assets/textures/standard/dogs.jpg',
             ])
 
-            // material = new THREE.MeshBasicMaterial({
-            //     envMap: reflectionCube,
-            //     color: 0xeeeeee,
-            //     reflectivity: 0.4,
-            //     skinning: true,
-            //     wireframe: false,
-            // })
+            reflectionCube.mapping = THREE.CubeReflectionMapping
 
-            material = new THREE.MeshNormalMaterial({
+            material = new THREE.MeshBasicMaterial({
                 skinning: true,
-                wireframe: true,
+                color: 0xffffff,
+                reflectivity: 1.0,
             })
-
-            const customShader = [
-                {
-                    from: '#include <common>',
-                    to: `
-                #include <common>
-                /* custom uniforms go here */
-
-                uniform float uTime;
-              `,
-                },
-                {
-                    from: '#include <color_fragment>',
-                    to: `
-                #include <color_fragment>
-                /* set diffuseColor.rgb here */
-
-                {
-                /*
-                  float fluctuate = (sin(uTime) + 1.0) / 2.0;
-                  diffuseColor.rgb = vec3(0.0, 0.0, 0.0);
-                */
-                }
-              `,
-                },
-            ]
-
-            material.onBeforeCompile = function (shader) {
-                customShader.forEach((rep) => {
-                    shader.fragmentShader = shader.fragmentShader.replace(rep.from, rep.to)
-                })
-
-                // custom uniforms
-                shader.uniforms.uTime = { value: 0.0 }
-
-                // make material's shader accessible
-                _this.shaders[_this.wolfMaterialKey] = shader
-
-                // add material to ready dictionary
-                _this.shaderMaterialsReady[_this.wolfMaterialKey] = material
-            }
         }
 
         // assign scene material to wolf
@@ -408,24 +362,19 @@ export default class Wolf extends THREE.Group {
             const loader = new THREE.CubeTextureLoader()
 
             var reflectionCube = loader.load([
-                'assets/textures/standard/dogs.jpg',
-                'assets/textures/standard/dogs.jpg',
-                'assets/textures/standard/dogs.jpg',
-                'assets/textures/standard/dogs.jpg',
-                'assets/textures/standard/dogs.jpg',
-                'assets/textures/standard/dogs.jpg',
+                'assets/textures/skyboxes/skybox1/right.jpg',
+                'assets/textures/skyboxes/skybox1/left.jpg',
+                'assets/textures/skyboxes/skybox1/top.jpg',
+                'assets/textures/skyboxes/skybox1/bottom.jpg',
+                'assets/textures/skyboxes/skybox1/front.jpg',
+                'assets/textures/skyboxes/skybox1/back.jpg',
             ])
 
             reflectionCube.mapping = THREE.CubeReflectionMapping
 
-            // material = new THREE.MeshBasicMaterial({
-            //     envMap: reflectionCube,
-            //     reflectivity: 1.0,
-            // })
-
-            material = new THREE.MeshNormalMaterial({
-                skinning: true,
-                wireframe: false,
+            material = new THREE.MeshBasicMaterial({
+                envMap: reflectionCube,
+                reflectivity: 1.0,
             })
         }
 

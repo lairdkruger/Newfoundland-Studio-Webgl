@@ -16,7 +16,7 @@ import webgl from '../lib/webgl'
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer'
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass'
 
-import { addGrainPassLite } from '../objects/post/GrainPassLite'
+import { addDitherPass } from '../objects/post/DitherPass'
 
 // objects
 import Wolf from '../objects/Wolf'
@@ -51,11 +51,11 @@ class ContactScene {
 
         this.scene.add(this.contactWolf)
 
-        // this.contactSkybox = new Skybox(webgl, {
-        //     scene: 'contact',
-        // })
+        this.contactSkybox = new Skybox(webgl, {
+            scene: 'contact',
+        })
 
-        // this.scene.add(this.contactSkybox)
+        this.scene.add(this.contactSkybox)
     }
 
     setCamera() {
@@ -104,7 +104,7 @@ class ContactScene {
         var renderPass = new RenderPass(this.scene, webgl.camera)
         webgl.composer.addPass(renderPass)
 
-        addGrainPassLite(webgl, {})
+        addDitherPass(webgl, {})
     }
 }
 

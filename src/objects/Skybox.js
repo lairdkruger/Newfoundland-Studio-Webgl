@@ -47,12 +47,12 @@ export default class Skybox extends THREE.Group {
             ])
         } else if (this.options.scene == 'contact') {
             this.skyBoxTexture = loader.load([
-                'assets/textures/skyboxes/skybox2/right.jpg',
-                'assets/textures/skyboxes/skybox2/left.jpg',
-                'assets/textures/skyboxes/skybox2/top.jpg',
-                'assets/textures/skyboxes/skybox2/bottom.jpg',
-                'assets/textures/skyboxes/skybox2/front.jpg',
-                'assets/textures/skyboxes/skybox2/back.jpg',
+                'assets/textures/skyboxes/skybox1/right.jpg',
+                'assets/textures/skyboxes/skybox1/left_no_sun.jpg',
+                'assets/textures/skyboxes/skybox1/top.jpg',
+                'assets/textures/skyboxes/skybox1/bottom.jpg',
+                'assets/textures/skyboxes/skybox1/front.jpg',
+                'assets/textures/skyboxes/skybox1/back.jpg',
             ])
         }
 
