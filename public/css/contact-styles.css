@@ -42,20 +42,11 @@ canvas {
 
 .contact-info-box {
     width: 80%;
-    padding-top: 100px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: start;
-}
-
-.keen-paragraph {
-    margin-top: 10vh;
-    align-self: flex-end;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: start;
+    justify-content: center;
 }
 
 .info-paragraph {
@@ -64,41 +55,19 @@ canvas {
 }
 
 .eye {
-    align-self: flex-start;
-}
-
-.coffee {
-    margin: 0;
-    padding: 0;
-}
-
-.beer {
-    align-self: center;
-    margin: 0;
-    padding: 0;
-}
-
-.yarn {
-    align-self: flex-start;
-    margin: 0;
-    padding: 0;
-}
-
-.ether {
-    margin-top: 10vh;
-    align-self: flex-end;
+    top: 0;
+    position: absolute;
 }
 
 .email {
     position: relative;
-    margin-top: 10vh;
 }
 
 .navigation-box {
     position: absolute;
     bottom: 0;
     padding-right: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 25px;
     display: flex;
     /* flex-direction: column; */
     align-items: flex-end;
@@ -118,7 +87,7 @@ canvas {
 .hover-contact:after {
     content: '';
     position: absolute;
-    top: 15%;
+    bottom: -5%;
     left: 0;
     right: 0;
     width: 100%;

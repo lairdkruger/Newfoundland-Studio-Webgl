@@ -130,8 +130,10 @@ var ditherShader = {
 		void main() {
 
 			vec4 color = texture2D(tDiffuse, vUv);
+
+			vec3 grayscale = gray(color.rgb);
         
-        	vec4 dither = dither8x8(gl_FragCoord.xy, vec4(color.rgb, opacity));
+        	vec4 dither = dither8x8(gl_FragCoord.xy, vec4(grayscale.rgb, opacity));
 
         	gl_FragColor = vec4(dither.rgb, opacity);
 
