@@ -16,6 +16,15 @@
         url('../fonts/Messapia/Bold/Messapia-Bold.svg') format('svg');
 }
 
+::selection {
+    background: #eeeeee; /* WebKit/Blink Browsers */
+    color: #333333;
+}
+::-moz-selection {
+    background: #eeeeee; /* Gecko Browsers */
+    color: #333333;
+}
+
 .work-section {
     font-family: 'Messapia Bold', sans-serif;
     font-weight: normal;

@@ -1,19 +1,19 @@
 @font-face {
-    font-family: 'Blackletter';
-    src: url('../fonts/Blackletter/fonts/blackletter.eot');
-    src: url('../fonts/Blackletter/fonts/blackletter.woff2') format('woff2'),
-        url('../fonts/Blackletter/fonts/blackletter.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
     font-family: 'Basier Mono';
     src: url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.eot');
     src: url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.woff2') format('woff2'),
         url('../fonts/Basier-Square_Mono/basiersquaremono-regular-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
+}
+
+::selection {
+    background: #eeeeee; /* WebKit/Blink Browsers */
+    color: #333333;
+}
+::-moz-selection {
+    background: #eeeeee; /* Gecko Browsers */
+    color: #333333;
 }
 
 .home-section {

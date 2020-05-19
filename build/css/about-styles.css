@@ -7,6 +7,15 @@
         url('../fonts/Space-Grotesk/SpaceGrotesk-SemiBold.svg') format('svg');
 }
 
+::selection {
+    background: #eeeeee; /* WebKit/Blink Browsers */
+    color: #333333;
+}
+::-moz-selection {
+    background: #eeeeee; /* Gecko Browsers */
+    color: #333333;
+}
+
 body {
     font-weight: normal;
     font-style: normal;
