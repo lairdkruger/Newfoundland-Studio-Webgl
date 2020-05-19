@@ -99,6 +99,8 @@ class LandingScene {
         })
 
         addGrainPassLite(webgl, {})
+
+        console.log(webgl)
     }
 }
 
