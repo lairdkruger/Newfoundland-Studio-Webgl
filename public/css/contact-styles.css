@@ -16,6 +16,15 @@
         url('../fonts/Faune/Faune-TextItalic.svg') format('svg');
 }
 
+::selection {
+    background: #eeeeee; /* WebKit/Blink Browsers */
+    color: #333333;
+}
+::-moz-selection {
+    background: #eeeeee; /* Gecko Browsers */
+    color: #333333;
+}
+
 body {
     font-family: 'Faune', serif;
     font-weight: normal;
