@@ -112,47 +112,6 @@ export default class Wolf extends THREE.Group {
                 skinning: true,
                 wireframe: false,
             })
-
-            const customShader = [
-                {
-                    from: '#include <common>',
-                    to: `
-                #include <common>
-                /* custom uniforms go here */
-
-                uniform float uTime;
-              `,
-                },
-                {
-                    from: '#include <color_fragment>',
-                    to: `
-                #include <color_fragment>
-                /* set diffuseColor.rgb here */
-
-                {
-                /*
-                  float fluctuate = (sin(uTime) + 1.0) / 2.0;
-                  diffuseColor.rgb = vec3(0.0, 0.0, 0.0);
-                */
-                }
-              `,
-                },
-            ]
-
-            material.onBeforeCompile = function (shader) {
-                customShader.forEach((rep) => {
-                    shader.fragmentShader = shader.fragmentShader.replace(rep.from, rep.to)
-                })
-
-                // custom uniforms
-                shader.uniforms.uTime = { value: 0.0 }
-
-                // make material's shader accessible
-                _this.shaders[_this.wolfMaterialKey] = shader
-
-                // add material to ready dictionary
-                _this.shaderMaterialsReady[_this.wolfMaterialKey] = material
-            }
         }
 
         function aboutMaterial(_this) {
@@ -196,47 +155,6 @@ export default class Wolf extends THREE.Group {
                 skinning: true,
                 wireframe: false,
             })
-
-            const customShader = [
-                {
-                    from: '#include <common>',
-                    to: `
-                #include <common>
-                /* custom uniforms go here */
-
-                uniform float uTime;
-              `,
-                },
-                {
-                    from: '#include <color_fragment>',
-                    to: `
-                #include <color_fragment>
-                /* set diffuseColor.rgb here */
-
-                {
-                /*
-                  float fluctuate = (sin(uTime) + 1.0) / 2.0;
-                  diffuseColor.rgb = vec3(0.0, 0.0, 0.0);
-                */
-                }
-              `,
-                },
-            ]
-
-            material.onBeforeCompile = function (shader) {
-                customShader.forEach((rep) => {
-                    shader.fragmentShader = shader.fragmentShader.replace(rep.from, rep.to)
-                })
-
-                // custom uniforms
-                shader.uniforms.uTime = { value: 0.0 }
-
-                // make material's shader accessible
-                _this.shaders[_this.wolfMaterialKey] = shader
-
-                // add material to ready dictionary
-                _this.shaderMaterialsReady[_this.wolfMaterialKey] = material
-            }
         }
 
         function contactMaterial(_this) {
@@ -384,12 +302,6 @@ export default class Wolf extends THREE.Group {
         this.basicMaterialsReady[this.reflectionMaterialKey] = material
     }
 
-    updateUniforms(delta) {
-        if (this.wolfMaterialKey in this.shaderMaterialsReady) {
-            this.shaders[this.wolfMaterialKey].uniforms.uTime.value += delta
-        }
-    }
-
     initAnimations() {
         this.mixer = new THREE.AnimationMixer(this.gltfScene)
         this.clips = this.gltf.animations
@@ -407,8 +319,6 @@ export default class Wolf extends THREE.Group {
     onPointerUp(event, [x, y]) {}
 
     update(dt, time) {
-        this.updateUniforms(dt)
-
         // update animation
         if (this.mixer) this.mixer.update(dt)
     }

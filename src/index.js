@@ -64,31 +64,31 @@ assets.load({ renderer: webgl.renderer }).then(() => {
             },
         ],
         views: [
-            // for updating settings specific to each page
-            // {
-            //     namespace: 'home',
-            //     async beforeEnter(data) {
-            //         landingScene.postprocessing()
-            //     },
-            // },
-            // {
-            //     namespace: 'about',
-            //     async beforeEnter(data) {
-            //         aboutScene.postprocessing()
-            //     },
-            // },
-            // {
-            //     namespace: 'work',
-            //     async beforeEnter(data) {
-            //         workScene.postprocessing()
-            //     },
-            // },
-            // {
-            //     namespace: 'contact',
-            //     async beforeEnter(data) {
-            //         contactScene.postprocessing()
-            //     },
-            // },
+            //for updating settings specific to each page
+            {
+                namespace: 'home',
+                async beforeEnter(data) {
+                    landingScene.postprocessing()
+                },
+            },
+            {
+                namespace: 'about',
+                async beforeEnter(data) {
+                    aboutScene.postprocessing()
+                },
+            },
+            {
+                namespace: 'work',
+                async beforeEnter(data) {
+                    workScene.postprocessing()
+                },
+            },
+            {
+                namespace: 'contact',
+                async beforeEnter(data) {
+                    contactScene.postprocessing()
+                },
+            },
         ],
     })
 
