@@ -100,20 +100,20 @@ export default class WebGLApp {
         // __________________________ADDONS__________________________
 
         // really basic touch handler that propagates through the scene
-        this.touchHandler = createTouches(this.canvas, {
-            target: this.canvas,
-            filtered: true,
-        })
-        this.isDragging = false
-        this.touchHandler.on('start', (ev, pos) => {
-            this.isDragging = true
-            this.traverse('onPointerDown', ev, pos)
-        })
-        this.touchHandler.on('move', (ev, pos) => this.traverse('onPointerMove', ev, pos))
-        this.touchHandler.on('end', (ev, pos) => {
-            this.isDragging = false
-            this.traverse('onPointerUp', ev, pos)
-        })
+        // this.touchHandler = createTouches(this.canvas, {
+        //     target: this.canvas,
+        //     filtered: true,
+        // })
+        // this.isDragging = false
+        // this.touchHandler.on('start', (ev, pos) => {
+        //     this.isDragging = true
+        //     this.traverse('onPointerDown', ev, pos)
+        // })
+        // this.touchHandler.on('move', (ev, pos) => this.traverse('onPointerMove', ev, pos))
+        // this.touchHandler.on('end', (ev, pos) => {
+        //     this.isDragging = false
+        //     this.traverse('onPointerUp', ev, pos)
+        // })
 
         // expose a composer for postprocessing passes
         if (options.postprocessing) {
@@ -199,24 +199,21 @@ export default class WebGLApp {
     }
 
     resize = ({ width = this.width, height = this.height, pixelRatio = this.pixelRatio } = {}) => {
-        // update pixel ratio if necessary
+        //update pixel ratio if necessary
         if (this.renderer.getPixelRatio() !== pixelRatio) {
             this.renderer.setPixelRatio(pixelRatio)
         }
-
         // setup new size & update camera aspect if necessary
         this.renderer.setSize(width, height)
         if (this.camera.isPerspectiveCamera) {
             this.camera.aspect = width / height
         }
         this.camera.updateProjectionMatrix()
-
         // resize also the composer
         if (this.composer) {
             this.composer.setSize(pixelRatio * width, pixelRatio * height)
         }
-
-        // recursively tell all child objects to resize
+        //recursively tell all child objects to resize
         this.currentScene.traverse((obj) => {
             if (typeof obj.resize === 'function') {
                 obj.resize({
@@ -226,7 +223,6 @@ export default class WebGLApp {
                 })
             }
         })
-
         // draw a frame to ensure the new size has been registered visually
         this.draw()
         return this

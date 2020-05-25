@@ -71,7 +71,8 @@ canvas {
     line-height: 5rem;
     text-align: justify;
 
-    background: linear-gradient(to bottom left, #e2d4d8, #eeeeee);
+    /* background: linear-gradient(to bottom left, #e2d4d8, #eeeeee); */
+    background: linear-gradient(to bottom left, #e4c4cd, #eeeeee);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

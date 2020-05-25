@@ -64,28 +64,25 @@ assets.load({ renderer: webgl.renderer }).then(() => {
             },
         ],
         views: [
-            // for updating settings specific to each page
+            //for updating settings specific to each page
             {
                 namespace: 'home',
                 async beforeEnter(data) {
                     landingScene.postprocessing()
                 },
             },
-
             {
                 namespace: 'about',
                 async beforeEnter(data) {
                     aboutScene.postprocessing()
                 },
             },
-
             {
                 namespace: 'work',
                 async beforeEnter(data) {
                     workScene.postprocessing()
                 },
             },
-
             {
                 namespace: 'contact',
                 async beforeEnter(data) {
@@ -99,7 +96,6 @@ assets.load({ renderer: webgl.renderer }).then(() => {
     // currentSceneParams include everything not in three.js
     webgl.currentScene = webgl.scenes['landingScene']
     webgl.currentSceneParams = webgl.scenesParams['landingScene']
-    landingScene.postprocessing()
 
     const staticCameraBehaviour = new StaticCameraBehaviour(webgl)
 

@@ -11,7 +11,7 @@ const canvas = document.querySelector('#webgl-canvas')
 
 export default new WebGLApp({
     canvas,
-    alpha: true,
+    alpha: false,
     background: '#000',
     backgroundAlpha: 1,
     postprocessing: true,
