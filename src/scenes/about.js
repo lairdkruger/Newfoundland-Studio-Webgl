@@ -102,8 +102,6 @@ class AboutScene {
             speed: 0.5,
             rollSpeed: 0.0,
         })
-
-        addGrainPassLite(webgl, {})
     }
 }
 
